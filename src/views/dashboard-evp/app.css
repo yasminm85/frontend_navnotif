@@ -1,0 +1,76 @@
+.p-datatable .p-datatable-tbody .highlight-row {
+    background-color: #ffdd57 !important; 
+    color: #333 !important;
+}
+
+.p-datatable .p-datatable-tbody .completed-row {
+    background-color: #9EDF9C !important;
+    color: white !important;
+}
+.textarea-container {
+  padding: 20px;
+}
+
+/* Styles modul fullscreen */
+.full-screen-modal {
+  position: fixed; 
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: white; 
+  z-index: 1000; 
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: flex-end; 
+}
+
+.close-button {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.full-screen-textarea {
+  flex-grow: 1;
+  width: 50%;
+  padding: 10px;
+  box-sizing: border-box; 
+  border: none;
+  resize: none; 
+  font-size: 16px;
+}
+
+/* parsing karakter struktur laporan */
+.ql-editor {
+  padding: 12px 15px;
+  line-height: 1.6;
+}
+
+.ql-editor h1 {
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+.ql-editor ol, .ql-editor ul {
+  padding-left: 1.5em;
+  margin-bottom: 1em;
+}
+
+.ql-editor li {
+  margin-bottom: 0.5em;
+}
+
+.ql-editor em {
+  font-style: italic;
+}
+
+.ql-editor .ql-align-justify {
+  text-align: justify;
+}
+
