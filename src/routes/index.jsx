@@ -7,8 +7,8 @@ import DisplayRoutes from './DisplayRoutes';
 
 // ==============================|| ROUTING RENDER ||============================== //
 
-const router = createBrowserRouter([MainRoutes, DisplayRoutes,AuthenticationRoutes], {
-  basename: import.meta.env.VITE_APP_BASE_NAME
-});
+const router = createBrowserRouter(
+  [MainRoutes, DisplayRoutes, AuthenticationRoutes]
+);
 
 export default router;
