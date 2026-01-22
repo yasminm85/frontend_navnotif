@@ -452,3 +452,11 @@
     transform: scale(1) translateX(0);
   }
 }
+/* font table terbaru*/
+.datatable-besar.p-datatable .p-datatable-thead > tr > th {
+    font-size: 21px !important;
+}
+
+.datatable-besar.p-datatable .p-datatable-tbody > tr > td {
+    font-size: 26px !important;
+}
