@@ -1,0 +1,454 @@
+/* sedang berlangsung */
+.row-ongoing {
+    background-color: #C7EEFF !important;
+    font-weight: bold;
+}
+
+/* Warna hijau untuk baris yang sedang diingatkan */
+.row-reminder {
+    background-color: #d4edda !important;
+    /* Hijau muda */
+    color: #155724 !important;
+    font-weight: bold;
+}
+
+.row-laporan-belum {
+    background-color: #FCDE70 !important;
+    /* kuning */
+    color: #856404;
+    font-weight: bold;
+}
+
+.row-laporan-sudah {
+    background-color: #C0EBA6 !important;
+    /* hijau */
+    color: #065f46;
+    font-weight: bold;
+}
+
+.card {
+    min-height: 100vh;
+    background: linear-gradient(to bottom, #87CEEB 0%, #4682B4 50%, #191970 100%);
+    padding: 30px;
+}
+
+/* Style untuk MainCard */
+.card .MuiPaper-root,
+.card>div {
+    background: rgba(255, 255, 255, 0.98) !important;
+    border-radius: 20px !important;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3) !important;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+}
+
+.card .MuiCardHeader-root {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    color: white !important;
+    border-radius: 20px 20px 0 0 !important;
+    padding: 30px !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.card .MuiCardHeader-title span {
+    color: white !important;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+    font-size: 32px !important;
+    font-weight: 800 !important;
+    letter-spacing: 2px;
+}
+
+.p-datatable {
+    border-radius: 0 0 20px 20px;
+    overflow: hidden;
+    font-size: 20px !important;
+}
+
+.p-datatable .p-datatable-thead>tr>th {
+    background: linear-gradient(to right, #1e3c72 0%, #2a5298 100%) !important;
+    color: white !important;
+    font-weight: 800 !important;
+    padding: 20px 15px !important;
+    border: none !important;
+    text-transform: uppercase;
+    font-size: 22px !important;
+    letter-spacing: 1.5px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Body Table */
+.p-datatable .p-datatable-tbody>tr {
+    transition: all 0.3s ease;
+    border-left: 5px solid transparent;
+}
+
+.p-datatable .p-datatable-tbody>tr:nth-child(even) {
+    background-color: #f0f4f8 !important;
+}
+
+.p-datatable .p-datatable-tbody>tr:nth-child(odd) {
+    background-color: #ffffff !important;
+}
+
+.p-datatable .p-datatable-tbody>tr>td {
+    padding: 18px 15px !important;
+    border: none !important;
+    border-bottom: 2px solid #dee2e6 !important;
+    font-size: 20px !important;
+    font-weight: 500;
+    color: #2d3748;
+}
+
+
+.row-ongoing {
+    background: linear-gradient(to right, #4299e1 0%, #3182ce 100%) !important;
+    color: white !important;
+    font-weight: 800 !important;
+    border-left: 8px solid #2c5282 !important;
+    animation: glow 2s ease-in-out infinite;
+    box-shadow: 0 4px 20px rgba(66, 153, 225, 0.5);
+}
+
+.row-ongoing td {
+    color: white !important;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes glow {
+
+    0%,
+    100% {
+        box-shadow: 0 4px 20px rgba(66, 153, 225, 0.5);
+    }
+
+    50% {
+        box-shadow: 0 4px 30px rgba(66, 153, 225, 0.8);
+    }
+}
+
+.row-reminder {
+    background: linear-gradient(to right, #48bb78 0%, #38a169 100%) !important;
+    color: white !important;
+    font-weight: 800 !important;
+    border-left: 8px solid #22543d !important;
+    animation: flash 1.5s ease-in-out infinite;
+    box-shadow: 0 4px 20px rgba(72, 187, 120, 0.6);
+}
+
+.row-reminder td {
+    color: white !important;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes flash {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.8;
+    }
+}
+
+.row-laporan-belum {
+    background: linear-gradient(to right, #ed8936 0%, #dd6b20 100%) !important;
+    color: white !important;
+    font-weight: 800 !important;
+    border-left: 8px solid #c05621 !important;
+    box-shadow: 0 4px 15px rgba(237, 137, 54, 0.4);
+}
+
+.row-laporan-belum td {
+    color: white !important;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.row-laporan-sudah {
+    background: linear-gradient(to right, #68d391 0%, #48bb78 100%) !important;
+    color: white !important;
+    font-weight: 800 !important;
+    border-left: 8px solid #22543d !important;
+    box-shadow: 0 4px 15px rgba(104, 211, 145, 0.4);
+}
+
+.row-laporan-sudah td {
+    color: white !important;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.p-datatable .p-datatable-wrapper::-webkit-scrollbar {
+    width: 12px;
+}
+
+.p-datatable .p-datatable-wrapper::-webkit-scrollbar-track {
+    background: #e2e8f0;
+    border-radius: 10px;
+}
+
+.p-datatable .p-datatable-wrapper::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #1e3c72, #2a5298);
+    border-radius: 10px;
+    border: 2px solid #e2e8f0;
+}
+
+.p-datatable .p-datatable-wrapper::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to bottom, #2a5298, #1e3c72);
+}
+
+.p-datatable .p-datatable-loading-overlay {
+    background: rgba(30, 60, 114, 0.9) !important;
+}
+
+.p-datatable .p-progress-spinner svg {
+    stroke: white !important;
+}
+
+
+.p-datatable .p-datatable-wrapper {
+    height: calc(95vh - 60px - 92px - 30px) !important;
+    overflow: hidden !important;
+}
+
+.p-datatable .p-datatable-tbody {
+    overflow: hidden !important;
+}
+
+.p-datatable-scrollable .p-datatable-wrapper {
+    overflow: hidden !important;
+}
+
+.p-datatable .p-datatable-tbody>tr>td {
+    padding: 18px 15px !important;
+    border: none !important;
+    border-bottom: 2px solid #dee2e6 !important;
+    font-size: 20px !important;
+    font-weight: 500;
+    color: #2d3748;
+
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    line-height: 1.4 !important;
+}
+
+.p-datatable .p-datatable-thead>tr>th {
+    background: linear-gradient(to right, #1e3c72 0%, #2a5298 100%) !important;
+    color: white !important;
+    font-weight: 800 !important;
+    padding: 20px 15px !important;
+    border: none !important;
+    text-transform: uppercase;
+    font-size: 22px !important;
+    letter-spacing: 1.5px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+
+    white-space: normal !important;
+    word-wrap: break-word !important;
+}
+
+.p-datatable .p-datatable-tbody>tr>td {
+    max-width: 300px;
+    min-width: 100px;
+}
+
+.media-display {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: black;
+}
+
+.media-image,
+.media-video {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.media-wrapper {
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.media-wrapper img,
+.media-wrapper video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.fade-in {
+    opacity: 1;
+    transition: opacity 0.8s ease;
+}
+
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+.kenburns {
+    width: 100%;
+    height: 100%;
+    animation: kenburnsZoom linear forwards;
+    animation-duration: var(--kenburns-duration, 50s);
+}
+
+/* LANDSCAPE */
+.kenburns.landscape {
+    object-fit: cover;
+}
+
+/* PORTRAIT */
+.kenburns.portrait {
+    object-fit: contain;
+    background-color: black;
+}
+
+/* Zoom IN */
+@keyframes kenburnsZoom {
+    from {
+        transform: scale(1) translate(0, 0);
+    }
+
+    to {
+        transform: scale(1.15) translate(-20px, -20px);
+    }
+}
+
+/* Zoom OUT  */
+.kenburns.reverse {
+    animation-name: kenburnsZoomOut;
+}
+
+@keyframes kenburnsZoomOut {
+    from {
+        transform: scale(1.15) translate(-20px, -20px);
+    }
+
+    to {
+        transform: scale(1) translate(0, 0);
+    }
+}
+
+
+.kenburns-pan {
+    width: 110%;
+    height: 110%;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-duration: var(--pan-duration, 60s);
+}
+
+/* LANDSCAPE */
+.kenburns-pan.landscape {
+    object-fit: cover;
+}
+
+/* PORTRAIT */
+.kenburns-pan.portrait {
+    object-fit: contain;
+    background: black;
+}
+
+/* Geser dari kiri ke kanan */
+.pan-right {
+    animation-name: panRight;
+}
+
+/* Geser dar kanan ke kiri */
+.pan-left {
+    animation-name: panLeft;
+}
+
+@keyframes panRight {
+    from {
+        transform: translateX(-5%) scale(1.05);
+    }
+
+    to {
+        transform: translateX(5%) scale(1.8);
+    }
+}
+
+@keyframes panLeft {
+    from {
+        transform: translateX(5%) scale(1.05);
+    }
+
+    to {
+        transform: translateX(-5%) scale(1.8);
+    }
+}
+
+@keyframes blink-warning {
+    0%, 100% {
+        background-color: #ef4444 !important;
+        opacity: 1;
+    }
+    50% {
+        background-color: #fca5a5 !important;
+        opacity: 0.8;
+    }
+}
+
+.row-upcoming-blink {
+    background: linear-gradient(to right, #ef4444 0%, #dc2626 100%) !important;
+    animation: blink-warning 1s ease-in-out infinite !important;
+    color: white !important;
+    font-weight: 800 !important;
+    border-left: 8px solid #991b1b !important;
+    box-shadow: 0 4px 20px rgba(239, 68, 68, 0.6) !important;
+}
+
+.row-upcoming-blink td {
+    color: white !important;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3) !important;
+}
+
+.media-wrapper {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.kenburns {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation-duration: var(--pan-duration);
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+/* kanan + zoom-in */
+.pan-right-zoom-in {
+  animation-name: panRightZoomIn;
+}
+
+/* kiri + zoom-out */
+.pan-left-zoom-out {
+  animation-name: panLeftZoomOut;
+}
+
+@keyframes panRightZoomIn {
+  from {
+    transform: scale(1) translateX(0);
+  }
+  to {
+    transform: scale(1.3) translateX(-8%);
+  }
+}
+
+@keyframes panLeftZoomOut {
+  from {
+    transform: scale(1.3) translateX(-8%);
+  }
+  to {
+    transform: scale(1) translateX(0);
+  }
+}

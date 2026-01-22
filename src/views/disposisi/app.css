@@ -1,0 +1,10 @@
+.p-datatable .p-datatable-tbody .highlight-row {
+    background-color: #ffdd57 !important; /* kuning */
+    color: #333 !important;
+}
+
+.p-datatable .p-datatable-tbody .completed-row {
+    background-color: #9EDF9C !important; /* hijau */
+    color: white !important;
+}
+
