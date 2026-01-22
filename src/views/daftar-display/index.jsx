@@ -663,6 +663,7 @@ export default function KelolaDisplay() {
                     rows={rows}
                     paginator={false}
                     dataKey="_id"
+                    className="datatable-besar"
                     rowClassName={(row) => {
                         if (mode === MODE.SELESAI) {
                             return row.laporan_status === "SUDAH" ? "row-laporan-sudah" : "row-laporan-belum";
