@@ -304,8 +304,8 @@ export default function KelolaDisplay() {
         const end = endDate.toISOString().split('T')[0];
 
         try {
-            await axios.post(
-                'http://localhost:3000/api/media/create-duration',
+            await api.post(
+                '/api/media/create-duration',
                 {
                     agenda_selesai_start: start,
                     agenda_selesai_end: end
