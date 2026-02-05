@@ -126,7 +126,8 @@ export default function DashboardTindakLanjutEVP() {
     useEffect(() => {
         if (selected?.file_arahan) {
             getFileName(selected.file_arahan);
-        } else if (selected?.file_tindaklanjut) {
+        }
+        if (selected?.file_tindaklanjut) {
             getFileNameTinjut(selected.file_tindaklanjut);
         }
     }, [selected?.file_arahan, selected?.file_tindaklanjut]);
