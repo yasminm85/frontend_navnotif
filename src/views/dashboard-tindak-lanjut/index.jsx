@@ -102,7 +102,7 @@ export default function DashboardTindakLanjutEVP() {
 
     const getFileName = async () => {
         try {
-            const response = await api.get(`http://localhost:3000/api/tindaklanjut/file_meta/${selected.file_arahan}`, {
+            const response = await api.get(`/api/tindaklanjut/file_meta/${selected.file_arahan}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setFilename(response.data.filename);
@@ -113,7 +113,7 @@ export default function DashboardTindakLanjutEVP() {
 
     const getFileNameTinjut = async () => {
         try {
-            const response = await api.get(`http://localhost:3000/api/tindaklanjut/file_meta/${selected.file_tindaklanjut}`, {
+            const response = await api.get(`/api/tindaklanjut/file_meta/${selected.file_tindaklanjut}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setFilenameTinjut(response.data.filename);

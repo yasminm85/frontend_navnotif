@@ -136,7 +136,7 @@ export default function DaftarTindakLanjut() {
 
     const getFileName = async () => {
         try {
-            const response = await api.get(`http://localhost:3000/api/tindaklanjut/file_meta/${currentTask.file_arahan}`, {
+            const response = await api.get(`/api/tindaklanjut/file_meta/${currentTask.file_arahan}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setFilename(response.data.filename);
