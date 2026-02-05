@@ -17,7 +17,8 @@ export default function DashboardTindakLanjutEVP() {
     const token = localStorage.getItem('token');
     const [showArahan, setShowArahan] = useState([]);
     const [loading, setLoading] = useState(true);
-
+    const [filename, setFilename] = useState('');
+    const [filenametinjut, setFilenameTinjut] = useState('');
     const [selected, setSelected] = useState(null);
     const [showDetail, setShowDetail] = useState(false);
     const [showLegend, setShowLegend] = useState(true);
@@ -98,6 +99,37 @@ export default function DashboardTindakLanjutEVP() {
             console.error("Gagal buka file laporan", err);
         }
     };
+
+    const getFileName = async () => {
+        try {
+            const response = await axios.get(`http://localhost:3000/api/tindaklanjut/file_meta/${selected.file_arahan}`, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            setFilename(response.data.filename);
+        } catch (error) {
+            console.error("Error mengambil filename", error)
+        }
+    };
+
+    const getFileNameTinjut = async () => {
+        try {
+            const response = await axios.get(`http://localhost:3000/api/tindaklanjut/file_meta/${selected.file_tindaklanjut}`, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            setFilenameTinjut(response.data.filename);
+        } catch (error) {
+            console.error("Error mengambil filename", error)
+        }
+    };
+
+
+    useEffect(() => {
+        if (selected?.file_arahan) {
+            getFileName(selected.file_arahan);
+        } else if (selected?.file_tindaklanjut) {
+            getFileNameTinjut(selected.file_tindaklanjut);
+        }
+    }, [selected?.file_arahan, selected?.file_tindaklanjut]);
 
 
     const htmlToPlainText = (html) => {
@@ -259,7 +291,7 @@ export default function DashboardTindakLanjutEVP() {
                                         <i className="pi pi-file-pdf file-icon" />
                                         <div className="file-info">
                                             <span className="file-name">
-                                                {selected.file_arahan}
+                                                {filename}
                                             </span>
                                             <span className="file-action">
                                                 Klik untuk membuka dokumen
@@ -319,7 +351,7 @@ export default function DashboardTindakLanjutEVP() {
                                             <i className="pi pi-file-pdf file-icon" />
                                             <div className="file-info">
                                                 <span className="file-name">
-                                                    {selected.file_tindaklanjut}
+                                                    {filenametinjut}
                                                 </span>
                                                 <span className="file-action">
                                                     Klik untuk membuka

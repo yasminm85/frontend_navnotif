@@ -17,6 +17,7 @@ import api from '../../api/axios';
 export default function DaftarTindakLanjut() {
     const token = localStorage.getItem('token');
     const [loading, setLoading] = useState(true);
+    const [filename, setFilename] = useState('');
     const [tasks, setTasks] = useState([]);
     const [showDialog, setShowDialog] = useState(false);
     const [currentTask, setCurrentTask] = useState(null);
@@ -117,21 +118,38 @@ export default function DaftarTindakLanjut() {
     );
 
     const handleOpenFileArahan = async () => {
-            console.log(currentTask)
-            try {
-                const res = await api.get(
-                    `/api/tindaklanjut/file_tindak/${currentTask.file_arahan}`,
-                    {
-                        responseType: "blob"
-                    }
-                );
-    
-                const fileURL = URL.createObjectURL(res.data);
-                window.open(fileURL);
-            } catch (err) {
-                console.error("Gagal buka file laporan", err);
-            }
-        };
+        console.log(currentTask)
+        try {
+            const res = await api.get(
+                `/api/tindaklanjut/file_tindak/${currentTask.file_arahan}`,
+                {
+                    responseType: "blob"
+                }
+            );
+
+            const fileURL = URL.createObjectURL(res.data);
+            window.open(fileURL);
+        } catch (err) {
+            console.error("Gagal buka file laporan", err);
+        }
+    };
+
+    const getFileName = async () => {
+        try {
+            const response = await axios.get(`http://localhost:3000/api/tindaklanjut/file_meta/${currentTask.file_arahan}`, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            setFilename(response.data.filename);
+        } catch (error) {
+            console.error("Error mengambil filename", error)
+        }
+    };
+
+    useEffect(() => {
+        if (currentTask?.file_arahan) {
+            getFileName(currentTask.file_arahan);
+        }
+    }, [currentTask?.file_arahan]);
 
     return (
         <div className="card h-full flex">
@@ -269,7 +287,7 @@ export default function DaftarTindakLanjut() {
                                         <i className="pi pi-file-pdf file-icon" />
                                         <div className="file-info">
                                             <span className="file-name">
-                                                {currentTask.file_arahan}
+                                                {filename}
                                             </span>
 
                                         </div>
