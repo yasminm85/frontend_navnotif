@@ -280,7 +280,7 @@ export default function DashboardTindakLanjutEVP() {
                             <div className="detail-section dokumen">
                                 <div className="detail-card-title">
                                     <i className="pi pi-file mr-2" />
-                                    
+                                    Dokumen Arahan
                                 </div>
 
                                 {selected.file_arahan ? (
