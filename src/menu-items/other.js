@@ -1,6 +1,7 @@
 // src/menu-items/other.js
 import { IconDashboard } from '@tabler/icons-react';
 import AssignmentIcon from '@mui/icons-material/Assignment';
+import FeedbackIcon from '@mui/icons-material/Feedback';
 
 
 const other = {
@@ -25,7 +26,16 @@ const other = {
     icon: AssignmentIcon,
     breadcrumbs: false,
     allowedRoles: ['pegawai']
-  }
+  },
+  {
+      id: 'daftar-tindak-lanjut',
+      title: 'Daftar Tindak Lanjut',
+      type: 'item',
+      url: '/daftar-tindak-lanjut',
+      icon: FeedbackIcon,
+      breadcrumbs: false,
+      allowedRoles: ['pegawai']
+    }
 
   ]
 };

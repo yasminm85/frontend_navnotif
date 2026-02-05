@@ -860,10 +860,16 @@ export default function Disposisi() {
                 {/* TABLE */}
                 <DataTable
                     value={showDisposisi}
-                    paginator rows={5}
+                    paginator
+                    rows={5}
                     loading={loading}
                     dataKey="_id"
                     rowClassName={rowClass}
+                    emptyMessage={
+                        <div className="empty-center">
+                            Belum ada daftar disposisi
+                        </div>
+                    }
                 >
                     <Column field="status" header="Status" bodyClassName="text-center" style={{ minWidth: '5rem' }} headerStyle={{ textAlign: "center", justifyContent: "center", display: "flex" }} body={statusBodyTemplate} />
                     <Column field="nama_kegiatan" header="Nama Kegiatan" style={{ minWidth: '10rem' }} />

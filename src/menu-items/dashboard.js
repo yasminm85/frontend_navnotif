@@ -3,6 +3,7 @@ import { IconDashboard } from '@tabler/icons-react';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import { ManageAccounts } from '@mui/icons-material';
 import ViewStreamIcon from '@mui/icons-material/ViewStream';
+import FeedbackIcon from '@mui/icons-material/Feedback';
 
 // constant
 const icons = { IconDashboard };
@@ -48,6 +49,15 @@ const dashboard = {
       url: '/kelola-display',
       icon: ViewStreamIcon,
       allowedRoles: ['admin'],  
+      breadcrumbs: false
+    },
+    {
+      id: 'tindak-lanjut',
+      title: 'Tindak Lanjut',
+      type: 'item',
+      url: '/tindak-lanjut',
+      icon: FeedbackIcon,
+      allowedRoles: ['admin'],
       breadcrumbs: false
     },
 
