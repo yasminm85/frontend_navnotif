@@ -1,0 +1,76 @@
+/* 03feb2026 */
+
+/* Table header */
+.p-datatable thead th {
+    font-weight: 600;
+    background: #f8fafc;
+}
+
+/* Hover row */
+.p-datatable tbody tr:hover {
+    background-color: #f1f5f9;
+}
+
+.fadein {
+    animation: fadeInUp 0.3s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.p-dialog-mask {
+    backdrop-filter: blur(2px);
+}
+
+.p-button {
+    transition: all 0.2s ease;
+}
+
+
+html, body, #root {
+    height: 100%;
+} 
+
+.card {
+    height: 100%;
+}
+
+.empty-center {
+    height: 100%;
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #64748b;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.detail-dialog {
+    width: 42rem;
+}
+
+.detail-dialog .p-dialog-header {
+    background: linear-gradient(
+        90deg,
+        #80A1BA,
+        #91C4C3
+    );
+    color: #ffffff;
+    padding: 1rem 1.5rem;
+}
+
+.detail-dialog .p-dialog-content {
+    padding-top: 2rem;
+}
+
+/* 03feb2026 */

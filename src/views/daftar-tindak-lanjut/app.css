@@ -1,0 +1,206 @@
+/* 03feb2026 */
+.input_container {
+  border: 1px solid #e5e5e5;
+}
+
+input[type=file]::file-selector-button {
+  background-color: #fff;
+  color: #000;
+  border: 0px;
+  border-right: 1px solid #e5e5e5;
+  padding: 10px 15px;
+  margin-right: 20px;
+  transition: .5s;
+}
+
+input[type=file]::file-selector-button:hover {
+  background-color: #eee;
+  border: 0px;
+  border-right: 1px solid #e5e5e5;
+}
+
+html, body, #root {
+    height: 100%;
+}
+
+.card {
+    height: 100%;
+}
+
+/* Empty state */
+.empty-center {
+    height: 100%;
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #64748b;
+    font-size: 1rem;
+    text-align: center;
+}
+
+/* Isi arahan di table */
+.isi-arahan {
+    max-height: 90px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Dialog animation */
+.fadein {
+    animation: fadeInUp 0.3s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Box arahan */
+.arahan-box {
+    background: linear-gradient(135deg, #eff6ff, #ffffff);
+    border-left: 5px solid #3b82f6;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.arahan-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #2563eb;
+    text-transform: uppercase;
+}
+
+/* File input */
+.file-input {
+    border: 1px dashed #cbd5e1;
+    padding: 0.75rem;
+    border-radius: 6px;
+    width: 100%;
+}
+
+.file-card {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #ffffff;
+    transition: all 0.2s ease;
+}
+
+.file-card:hover {
+    background-color: #f9fafb;
+    border-color: #2563eb;
+}
+
+.file-icon {
+    font-size: 1.6rem;
+    color: #ef4444;
+}
+
+.file-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.file-name {
+    font-weight: 600;
+    color: #111827;
+}
+
+.file-action {
+    font-size: 0.8rem;
+    color: #6b7280;
+}
+
+
+.detail-dialog {
+    width: 42rem;
+}
+
+.detail-dialog .p-dialog-header {
+    background: linear-gradient(
+        90deg,
+        #80A1BA,
+        #91C4C3
+    );
+    color: #ffffff;
+    padding: 1rem 1.5rem;
+}
+
+.detail-dialog .p-dialog-content {
+    padding-top: 2rem;
+}
+
+.custom-datatable .p-datatable-thead > tr > th {
+    background: linear-gradient(180deg, #f8fafc, #eef2ff);
+    color: #1f2937;
+    font-weight: 600;
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.custom-datatable .p-datatable-tbody > tr {
+    transition: background-color 0.2s ease;
+}
+
+.custom-datatable .p-datatable-tbody > tr:hover {
+    background-color: #f9fafb;
+}
+
+.summary-card {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.85rem 1rem;
+    border-radius: 10px;
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.summary-card i {
+    font-size: 1.6rem;
+}
+
+.summary-value {
+    display: block;
+    font-size: 1.4rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.summary-label {
+    font-size: 0.85rem;
+    color: #6b7280;
+}
+
+/* STATUS COLOR */
+.summary-card.done i,
+.summary-card.done .summary-value {
+    color: #16a34a;
+}
+
+.summary-card.pending i,
+.summary-card.pending .summary-value {
+    color: #dc2626;
+}
+
+.summary-card.total i,
+.summary-card.total .summary-value {
+    color: #2563eb;
+}
+
+
+/* 03feb2026 */

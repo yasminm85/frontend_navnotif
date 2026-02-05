@@ -1,0 +1,297 @@
+/* =========================
+   ROOT & LAYOUT FIX
+========================= */
+html,
+body,
+#root {
+    height: 100%;
+    margin: 0;
+}
+
+.app-container {
+    min-height: 100vh;
+    background-color: #f9fafb;
+    display: flex;
+    flex-direction: column;
+}
+
+/* =========================
+   UTILITIES
+========================= */
+.max-w-25rem {
+    max-width: 25rem;
+}
+
+.bg-gray-50 {
+    background-color: #f9fafb;
+}
+
+.surface-card {
+    background: #ffffff;
+    border-radius: 10px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* =========================
+   DATATABLE
+========================= */
+.p-datatable {
+    font-size: 0.95rem;
+    flex: 1;
+}
+
+.p-datatable-wrapper {
+    flex: 1;
+}
+
+.p-datatable .p-datatable-tbody > tr {
+    height: 4rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.p-datatable .p-datatable-tbody > tr > td {
+    vertical-align: top;
+    padding: 0.75rem 0.75rem;
+}
+
+.p-datatable .p-column-header-content {
+    font-weight: 600;
+    color: #374151;
+}
+
+
+/* =========================
+   ROW STATUS HIGHLIGHT
+========================= */
+.row-done {
+    background-color: #f0fdf4 !important;
+}
+
+.row-pending {
+    background-color: #fef2f2 !important;
+}
+
+.p-datatable .p-datatable-tbody > tr.row-done:hover {
+    background-color: #dcfce7 !important;
+}
+
+.p-datatable .p-datatable-tbody > tr.row-pending:hover {
+    background-color: #fee2e2 !important;
+}
+
+/* =========================
+   ROW HOVER ANIMATION
+========================= */
+.p-datatable .p-datatable-tbody > tr {
+    transition:
+        background-color 0.2s ease,
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.p-datatable .p-datatable-tbody > tr:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+}
+/* 
+
+/* =========================
+   PAGINATOR
+========================= */
+.p-paginator {
+    border-top: 1px solid #e5e7eb;
+    margin-top: auto;
+}
+
+/* =========================
+   DIALOG BASE
+========================= */
+.p-dialog .p-dialog-header {
+    font-weight: 600;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.p-dialog .p-dialog-content {
+    line-height: 1.6;
+}
+
+.p-dialog .p-dialog-content p {
+    margin: 0;
+}
+
+/* =========================
+   DETAIL DIALOG
+========================= */
+.detail-dialog {
+    width: 42rem;
+}
+
+.detail-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+/* Section */
+.detail-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* Label */
+.detail-label {
+    font-weight: 600;
+    color: #374151;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Value simple */
+.detail-value {
+    color: #111827;
+}
+
+/* Box content */
+.detail-box {
+    background-color: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    line-height: 1.6;
+    color: #111827;
+}
+
+/* Judul tindak lanjut */
+.tindaklanjut-title {
+    font-weight: 600;
+    color: #2563eb;
+    margin-bottom: 0.25rem;
+}
+
+/* Empty state */
+.detail-empty {
+    font-style: italic;
+    color: #6b7280;
+}
+
+/* Background utama popup */
+.detail-dialog .p-dialog-content {
+    background: linear-gradient(
+        180deg,
+        #ffffff 0%,
+        #f9fafb 100%
+    );
+    padding: 1.5rem 1.75rem;
+}
+
+.detail-section {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+
+.detail-dialog .p-dialog-header {
+    background: linear-gradient(
+        90deg,
+        #80A1BA,
+        #91C4C3
+    );
+    color: #ffffff;
+    padding: 1rem 1.5rem;
+}
+
+.detail-dialog .p-dialog-header .p-dialog-title {
+    font-weight: 600;
+}
+
+.detail-dialog .p-dialog-header .p-dialog-header-icon {
+    color: #ffffff;
+}
+
+/* =========================
+   FILE CARD
+========================= */
+.file-card {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #ffffff;
+    transition: all 0.2s ease;
+}
+
+.file-card:hover {
+    background-color: #f9fafb;
+    border-color: #2563eb;
+}
+
+.file-icon {
+    font-size: 1.5rem;
+    color: #ef4444;
+}
+
+.file-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.file-name {
+    font-weight: 600;
+    color: #111827;
+}
+
+.file-action {
+    font-size: 0.8rem;
+    color: #6b7280;
+}
+
+/* =========================
+   STATUS LEGEND
+========================= */
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.status-done {
+    background-color: #22c55e;
+}
+
+.status-pending {
+    background-color: #ef4444;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media screen and (max-width: 768px) {
+    .detail-dialog {
+        width: 95vw;
+    }
+
+    .p-datatable {
+        font-size: 0.9rem;
+    }
+}
+
+.detail-card-title {
+    font-weight: 600;
+    color: #374151;
+    display: flex;
+    align-items: center;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
+    border-bottom: 1px solid #e5e7eb;
+}
