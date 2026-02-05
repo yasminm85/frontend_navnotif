@@ -25,6 +25,8 @@ const DaftarUser = Loadable(lazy(() => import('views/users')));
 // halaman kelola display 
 const KelolaDisplay = Loadable(lazy(() => import('views/kelola-display')));
 
+const TindakLanjut = Loadable(lazy(() => import('views/tindak-lanjut')));
+
 // halaman tindak lanjut
 const DaftarTindakLanjut = Loadable(lazy(() => import('views/daftar-tindak-lanjut')));
 
