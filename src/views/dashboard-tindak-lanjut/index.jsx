@@ -100,37 +100,49 @@ export default function DashboardTindakLanjutEVP() {
         }
     };
 
-    const getFileName = async () => {
+    const getFileName = async (fileId) => {
+        console.log(fileId);
         try {
-            const response = await api.get(`/api/tindaklanjut/file_meta/${selected.file_arahan}`, {
-                headers: { Authorization: `Bearer ${token}` }
-            });
-            setFilename(response.data.filename);
+            const response = await api.get(
+                `/api/tindaklanjut/file_meta/${fileId}`,
+                { headers: { Authorization: `Bearer ${token}` } }
+            );
+            setFilename(response.data.filename || "");
         } catch (error) {
-            console.error("Error mengambil filename", error)
+            setFilename("");
         }
     };
 
-    const getFileNameTinjut = async () => {
+
+
+    const getFileNameTinjut = async (fileId) => {
         try {
-            const response = await api.get(`/api/tindaklanjut/file_meta/${selected.file_tindaklanjut}`, {
-                headers: { Authorization: `Bearer ${token}` }
-            });
-            setFilenameTinjut(response.data.filename);
+            const response = await api.get(
+                `/api/tindaklanjut/file_meta/${fileId}`,
+                { headers: { Authorization: `Bearer ${token}` } }
+            );
+            setFilenameTinjut(response.data.filename || "");
         } catch (error) {
-            console.error("Error mengambil filename", error)
+            console.error("Error mengambil filename tinjut", error);
+            setFilenameTinjut("");
         }
     };
 
 
     useEffect(() => {
-        if (selected?.file_arahan) {
-            getFileName(selected.file_arahan);
-        }
-        if (selected?.file_tindaklanjut) {
-            getFileNameTinjut(selected.file_tindaklanjut);
-        }
-    }, [selected?.file_arahan, selected?.file_tindaklanjut]);
+        setFilename("");
+        if (!selected?.file_arahan) return;
+
+        getFileName(selected.file_arahan);
+    }, [selected?.file_arahan]);
+
+
+    useEffect(() => {
+        setFilenameTinjut("");
+        if (!selected?.file_tindaklanjut) return;
+
+        getFileNameTinjut(selected.file_tindaklanjut);
+    }, [selected?.file_tindaklanjut]);
 
 
     const htmlToPlainText = (html) => {
@@ -292,7 +304,7 @@ export default function DashboardTindakLanjutEVP() {
                                         <i className="pi pi-file-pdf file-icon" />
                                         <div className="file-info">
                                             <span className="file-name">
-                                                {filename}
+                                                {filename && <span>{filename}</span>}
                                             </span>
                                             <span className="file-action">
                                                 Klik untuk membuka dokumen
@@ -352,7 +364,7 @@ export default function DashboardTindakLanjutEVP() {
                                             <i className="pi pi-file-pdf file-icon" />
                                             <div className="file-info">
                                                 <span className="file-name">
-                                                    {filenametinjut}
+                                                    {filenametinjut && <span>{filenametinjut}</span>}
                                                 </span>
                                                 <span className="file-action">
                                                     Klik untuk membuka
