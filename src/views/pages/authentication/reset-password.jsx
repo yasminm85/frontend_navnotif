@@ -39,7 +39,7 @@ export function ResetPassword() {
     if (!email) return Swal.fire({ icon: "error", title: "Gagal", text: "Masukkan email Anda" });
     setLoading(true);
     try {
-      await api.post("http://localhost:3000/api/auth/send-reset-otp", { email });
+      await api.post("/api/auth/send-reset-otp", { email });
       Swal.fire({ icon: "success", title: "Berhasil", text: "Kode OTP telah dikirim ke email Anda" });
       setIsEmailSent(true);
     } catch (err) {
@@ -90,7 +90,7 @@ export function ResetPassword() {
   const handleResendOtp = async () => {
     setLoading(true);
     try {
-      const { data } = await api.post("http://localhost:3000/api/auth/send-reset-otp", { email });
+      const { data } = await api.post("/api/auth/send-reset-otp", { email });
       if (data.success) {
         Swal.fire({ icon: "success", title: "Berhasil", text: "Kode OTP telah dikirim ulang" });
         setOtp(new Array(OTP_LENGTH).fill(""));
@@ -110,7 +110,7 @@ export function ResetPassword() {
     if (newPassword.length < 6) return Swal.fire({ icon: "error", title: "Gagal", text: "Password minimal 6 karakter" });
     setLoading(true);
     try {
-      const { data } = await api.post("http://localhost:3000/api/auth/reset-password", {
+      const { data } = await api.post("/api/auth/reset-password", {
         email, otp: otp.join(""), newPassword,
       });
       if (data.success) {
