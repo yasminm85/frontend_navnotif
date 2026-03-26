@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import api from '../../api/axios';
+import api from '../../../api/axios';
 import Swal from "sweetalert2";
 import {
   Box,
