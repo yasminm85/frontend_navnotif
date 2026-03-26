@@ -7,10 +7,11 @@ import InputAdornment from '@mui/material/InputAdornment';
 import InputLabel from '@mui/material/InputLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import Box from '@mui/material/Box';
+import { Link } from 'react-router';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import AnimateButton from 'ui-component/extended/AnimateButton';
-import { Link } from "react-router-dom";
+import { Typography } from '@mui/material';
 
 export default function AuthLogin({
   email,
@@ -64,6 +65,7 @@ export default function AuthLogin({
           </Typography>
         </Link>
       </Box>
+
 
       {/* Login button */}
       <Box sx={{ mt: 2 }}>
