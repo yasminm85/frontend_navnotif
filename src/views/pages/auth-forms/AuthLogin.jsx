@@ -56,6 +56,14 @@ export default function AuthLogin({
         />
       </FormControl>
 
+      <Box sx={{ textAlign: "right", mt: 1 }}>
+        <Link to="/reset-password" className="font-medium text-gray-900">
+          <Typography variant="small" className="text-white-gray-700">
+            Lupa Password?
+          </Typography>
+        </Link>
+      </Box>
+
       {/* Login button */}
       <Box sx={{ mt: 2 }}>
         <AnimateButton>

@@ -6,12 +6,18 @@ import Box from '@mui/material/Box';
 
 // project imports
 import LogoSection from '../LogoSection';
+import SearchSection from './SearchSection';
 import ProfileSection from './ProfileSection';
+import NotificationSection from './NotificationSection';
 
 import { handlerDrawerOpen, useGetMenuMaster } from 'api/menu';
 
 // assets
 import { IconMenu2 } from '@tabler/icons-react';
+
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { getUserDetail } from '../../../features/authSlice'; 
 
 // ==============================|| MAIN NAVBAR / HEADER ||============================== //
 
@@ -21,6 +27,13 @@ export default function Header() {
 
   const { menuMaster } = useGetMenuMaster();
   const drawerOpen = menuMaster.isDashboardDrawerOpened;
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getUserDetail());
+  }, [dispatch]);
+
+  
 
   return (
     <>
@@ -36,11 +49,11 @@ export default function Header() {
             ...theme.typography.mediumAvatar,
             overflow: 'hidden',
             transition: 'all .2s ease-in-out',
-            bgcolor: 'primary.light',
-            color: 'primary.dark',
+            bgcolor: 'secondary.light',
+            color: 'secondary.dark',
             '&:hover': {
-              bgcolor: 'primary.dark',
-              color: 'primary.light'
+              bgcolor: 'secondary.dark',
+              color: 'secondary.light'
             }
           }}
           onClick={() => handlerDrawerOpen(!drawerOpen)}
@@ -55,7 +68,7 @@ export default function Header() {
       <Box sx={{ flexGrow: 1 }} />
 
       {/* notification */}
-        
+
       {/* profile */}
       <ProfileSection />
     </>
