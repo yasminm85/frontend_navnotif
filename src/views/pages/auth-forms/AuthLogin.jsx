@@ -10,6 +10,7 @@ import Box from '@mui/material/Box';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import AnimateButton from 'ui-component/extended/AnimateButton';
+import { Link } from "react-router-dom";
 
 export default function AuthLogin({
   email,
