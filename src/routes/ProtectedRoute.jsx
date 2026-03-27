@@ -2,8 +2,10 @@ import { Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const ProtectedRoute = ({ children, allowedRoles }) => {
-  const { user, token } = useSelector((state) => state.auth);
+  const { user, token, isInitialized } = useSelector((state) => state.auth);
 
+  if (!isInitialized) return null; 
+  
   // jika belum login
   if (!token) {
     return <Navigate to="/pages/login" replace />;

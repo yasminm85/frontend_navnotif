@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { LoginUser, reset } from '../../../features/authSlice';
+import { LoginUser } from '../../../features/authSlice';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
-// MUI Components
+// MUI Componen ts
 import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
