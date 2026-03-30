@@ -15,11 +15,6 @@ const initialState = {
   message: "",
 };
 
-// const api = axios.create({
-//   baseURL: 'https://navnotif.up.railway.app',
-//   withCredentials: true
-// });
-
 
 export const LoginUser = createAsyncThunk(
   "user/LoginUser",

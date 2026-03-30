@@ -12,10 +12,8 @@ import { LogOut, reset } from '../../../features/authSlice';
 import { useNavigate } from 'react-router-dom';
 
 
-// third party
 import PerfectScrollbar from 'react-perfect-scrollbar';
 
-// project imports
 import MenuCard from './MenuCard';
 import MenuList from '../MenuList';
 import LogoSection from '../LogoSection';
@@ -63,9 +61,9 @@ function Sidebar() {
       <Grid container alignItems="center" spacing={1}>
         <Grid sx={{ display: 'flex', p: 2 }}><LogoSection /></Grid>
         <Grid>
-          <Typography gutterBottom variant={downMD ? 'h3' : 'h2'}>
+          {/* <Typography gutterBottom variant={downMD ? 'h3' : 'h2'}>
             NavNotif
-          </Typography>
+          </Typography> */}
         </Grid>
       </Grid>
 
