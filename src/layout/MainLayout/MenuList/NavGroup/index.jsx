@@ -69,18 +69,15 @@ export default function NavGroup({ item, lastItem, remItems, lastItemId, setSele
     }
   };
 
-  // keep selected-menu on page load and use for horizontal menu close on change routes
   useEffect(() => {
     checkSelectedOnload(currentItem);
     if (openMini) setAnchorEl(null);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname, currentItem]);
 
   const handleClose = () => {
     setAnchorEl(null);
   };
 
-  // menu list collapse & items
   const items = currentItem.children?.map((menu) => {
     switch (menu?.type) {
       case 'collapse':
@@ -117,7 +114,6 @@ export default function NavGroup({ item, lastItem, remItems, lastItemId, setSele
         {items}
       </List>
 
-      {/* group divider */}
       {drawerOpen && <Divider sx={{ mt: 0.25, mb: 1.25 }} />}
     </>
   );

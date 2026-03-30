@@ -58,13 +58,8 @@ function Sidebar() {
 
   const logo = useMemo(
     () => (
-      <Grid container alignItems="center" spacing={1}>
+      <Grid container justifyContent="center" alignItems="center" spacing={1}>
         <Grid sx={{ display: 'flex', p: 2 }}><LogoSection /></Grid>
-        <Grid>
-          {/* <Typography gutterBottom variant={downMD ? 'h3' : 'h2'}>
-            NavNotif
-          </Typography> */}
-        </Grid>
       </Grid>
 
     ),
