@@ -9,6 +9,7 @@ import { InputText } from 'primereact/inputtext';
 import { InputTextarea } from 'primereact/inputtextarea';
 import { MultiSelect } from 'primereact/multiselect';
 import { Divider } from 'primereact/divider';
+import { Calendar } from 'primereact/calendar';
 import 'primereact/resources/themes/lara-light-blue/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
@@ -16,7 +17,6 @@ import 'primeflex/primeflex.css';
 import './app.css';
 import Swal from 'sweetalert2';
 import api from '../../api/axios';
-
 
 export default function TindakLanjut() {
     const token = localStorage.getItem('token');
@@ -26,13 +26,16 @@ export default function TindakLanjut() {
     const [showForm, setShowForm] = useState(false);
     const [showArahan, setShowArahan] = useState([]);
     const [errors, setErrors] = useState({});
-    const [form, setForm] = useState({
+    const [personilFilter, setPersonilFilter] = useState("");
 
+    const [form, setForm] = useState({
         personilyangdituju: "",
         judulArahan: "",
         isiArahan: "",
+        deadline: null,
         file: null,
     });
+
     const validateForm = () => {
         let newErrors = {};
         if (!selectedpegawai || selectedpegawai.length === 0)
@@ -105,10 +108,14 @@ export default function TindakLanjut() {
 
         const pegawaiIds = selectedpegawai.map((p) => p._id);
         const formData = new FormData();
+        console.log(pegawaiIds);
 
         formData.append("personil_yang_dituju", JSON.stringify(pegawaiIds));
         formData.append("judul_arahan", form.judulArahan);
         formData.append("isi_arahan", form.isiArahan);
+        if (form.deadline) {
+            formData.append("deadline", form.deadline.toISOString());
+        }
 
         if (form.file) formData.append("file_arahan", form.file);
 
@@ -130,9 +137,10 @@ export default function TindakLanjut() {
                 personilyangdituju: "",
                 judulArahan: "",
                 isiArahan: "",
+                deadline: null,
                 file: null,
-
             });
+
             setSelectedpegawai([]);
             setErrors({});
 
@@ -140,6 +148,7 @@ export default function TindakLanjut() {
             console.error("Error disposisi:", error.response?.data || error.message);
         }
     };
+
 
     const nomorBodyTemplate = (rowData, options) => {
         return options.rowIndex + 1;
@@ -177,26 +186,57 @@ export default function TindakLanjut() {
         );
     };
 
-    
+    const deadlineBodyTemplate = (rowData) => {
+        if (!rowData.deadline) {
+            return <span className="deadline-badge neutral">Tidak Ada</span>;
+        }
+
+        const isLate = new Date(rowData.deadline) < new Date();
+
+        return (
+            <span className={`deadline-badge ${isLate ? "late" : "ontime"}`}>
+                {isLate ? "Sudah Lewat" : "Belum Lewat"}
+            </span>
+        );
+    };
+
+    const filteredArahan = showArahan.filter(item => {
+        if (!personilFilter) return true;
+
+        const names = item.personil_yang_dituju?.map(p => {
+            if (typeof p === "object") return p.name;
+            const match = pegawaisel.find(emp => emp._id === p);
+            return match?.name;
+        }) || [];
+
+        return names.some(name =>
+            name.toLowerCase().includes(personilFilter.toLowerCase())
+        );
+    });
+
 
     return (
         <>
             <div className="card h-full">
                 <MainCard title="Tindak Lanjut" className="h-full">
                     <div className="flex justify-content-between align-items-center mb-3">
-                        <span className="text-lg font-semibold">
-                            Daftar Tindak Lanjut
-                        </span>
+                        <div>
+                            <h3 className="m-0">📌 Daftar Tindak Lanjut</h3>
+                            <small className="text-500">
+                                Data arahan dan tindak lanjut yang telah dibuat
+                            </small>
+                        </div>
 
                         <Button
                             label="Buat Tindak Lanjut"
                             icon="pi pi-plus"
-                            className="p-button-primary"
+                            className="p-button-sm p-button-primary"
                             onClick={() => {
                                 setErrors({});
                                 setForm({
                                     judulArahan: "",
                                     isiArahan: "",
+                                    deadline: null,
                                     file: null,
                                 });
                                 setSelectedpegawai([]);
@@ -205,15 +245,24 @@ export default function TindakLanjut() {
                         />
                     </div>
 
+                    <div className="mb-3">
+                        <InputText
+                            placeholder="Cari personil..."
+                            value={personilFilter}
+                            onChange={(e) => setPersonilFilter(e.target.value)}
+                            className="w-full"
+                        />
+                    </div>
+
+
                     <div style={{ minHeight: "400px" }}>
                         <DataTable
-                            value={showArahan}
+                            value={filteredArahan}
                             paginator
                             rows={10}
                             loading={loading}
                             dataKey="_id"
                             responsiveLayout="scroll"
-                            stripedRows
                             showGridlines
                             className="h-full border-round-lg"
                             emptyMessage={
@@ -224,10 +273,13 @@ export default function TindakLanjut() {
                                 </div>
                             }
                         >
-                            <Column header="No" body={nomorBodyTemplate} style={{ width: "4rem" }} />
-                            <Column header="Personil yang Dituju" body={personilBodyTemplate} />
-                            <Column header="Arahan" body={arahanBodyTemplate} />
-                            <Column header="Tindak Lanjut" body={tindakLanjutBodyTemplate} />
+                            <Column header="No" body={nomorBodyTemplate} style={{ width: "4rem" }} headerClassName='th-center' />
+                            <Column header="Personil yang Dituju" body={personilBodyTemplate} headerClassName='th-center' />
+                            <Column header="Arahan" body={arahanBodyTemplate} headerClassName='th-center' />
+                            <Column header="Tindak Lanjut" body={tindakLanjutBodyTemplate} headerClassName='th-center' />
+                            <Column header="Deadline" body={deadlineBodyTemplate} headerClassName='th-center' />
+
+
                         </DataTable>
                     </div>
                 </MainCard>
@@ -247,7 +299,6 @@ export default function TindakLanjut() {
                     </div>
                 }
             >
-
 
                 <div className="p-fluid">
 
@@ -301,6 +352,33 @@ export default function TindakLanjut() {
                         )}
                     </div>
 
+                    <div className="mb-4">
+                        <label className="font-medium mb-2 block">
+                            Deadline <span className="text-red-500">(opsional)</span>
+                        </label>
+
+                        <span className="p-input-icon-right w-full">
+                            <i className="pi pi-calendar" />
+                            <Calendar
+                                value={form.deadline}
+                                onChange={(e) => handleChange("deadline", e.value)}
+                                showIcon={false}
+                                placeholder="Pilih tanggal & jam deadline"
+                                className="w-full"
+                                inputClassName="w-full"
+                                minDate={new Date()}
+                                dateFormat="dd/mm/yy"
+                            />
+                        </span>
+
+                        {errors.deadline && (
+                            <small className="p-error block mt-1">
+                                {errors.deadline}
+                            </small>
+                        )}
+                    </div>
+
+
                     <Divider />
 
                     <div className="grid">
@@ -320,3 +398,4 @@ export default function TindakLanjut() {
     );
 
 }
+

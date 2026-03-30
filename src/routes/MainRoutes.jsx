@@ -4,36 +4,26 @@ import MainLayout from 'layout/MainLayout';
 import Loadable from 'ui-component/Loadable';
 import ProtectedRoute from './ProtectedRoute';
 
-// dashboard routing
 const DashboardDefault = Loadable(lazy(() => import('views/dashboard/Default')));
 
-// dashboard EVP
 const DashboardEVP = Loadable(lazy(() => import('views/dashboard-evp')));
 
-// Disposisi routing
 const Disposisi = Loadable(lazy(() => import('views/disposisi')));
 
-// dashboard pegawai routing
 const DashboardPegawai = Loadable(lazy(() => import('views/dashboard-pegawai/Default')));
 
-//daftar notifikasi routing
 const DaftarNotifikasi = Loadable(lazy(() => import('views/daftar-notifikasi')));
 
-// halaman kelola user
 const DaftarUser = Loadable(lazy(() => import('views/users')));
 
-// halaman kelola display 
 const KelolaDisplay = Loadable(lazy(() => import('views/kelola-display')));
 
 const TindakLanjut = Loadable(lazy(() => import('views/tindak-lanjut')));
 
-// halaman tindak lanjut
 const DaftarTindakLanjut = Loadable(lazy(() => import('views/daftar-tindak-lanjut')));
 
-// 04feb2026
 const DashboardTindakLanjut = Loadable(lazy(() => import('views/dashboard-tindak-lanjut')));
 
-// ==============================|| MAIN ROUTING ||============================== //
 
 const MainRoutes = {
   path: '/',
@@ -122,7 +112,7 @@ const MainRoutes = {
         </ProtectedRoute>
       )
     },
-    // 03feb2026
+
     {
       path: '/dashboard-evp',
       element: (
@@ -131,7 +121,7 @@ const MainRoutes = {
         </ProtectedRoute>
       )
     },
-    // 04feb2026
+
     {
       path: '/dashboard-tindak-lanjut',
       element: (

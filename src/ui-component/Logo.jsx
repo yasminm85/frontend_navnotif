@@ -1,6 +1,6 @@
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import  logo  from '../assets/images/logo-airnav.svg';
+import  logo  from '../assets/images/logo-navnotif.png';
 
 // project imports
 

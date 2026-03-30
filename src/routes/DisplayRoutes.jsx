@@ -2,7 +2,6 @@ import { lazy } from 'react';
 
 import Loadable from 'ui-component/Loadable';
 
-// halaman daftar display 
 const DaftarDisplay = Loadable(lazy(() => import('views/daftar-display')));
 
 

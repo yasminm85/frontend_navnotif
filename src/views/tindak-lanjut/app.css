@@ -1,15 +1,26 @@
-/* 03feb2026 */
-
-/* Table header */
-.p-datatable thead th {
+.p-datatable .p-datatable-thead > tr > th {
+    background: linear-gradient(90deg, #80A1BA, #91C4C3);
+    color: #ffffff;
     font-weight: 600;
-    background: #f8fafc;
+    font-size: 0.85rem;
+    border: none;
+    text-align: center;
 }
 
-/* Hover row */
-.p-datatable tbody tr:hover {
-    background-color: #f1f5f9;
+.p-datatable .p-datatable-thead > tr > th {
+    border-bottom: 2px solid rgba(255,255,255,0.3);
 }
+
+.th-center {
+    text-align: center !important;
+    vertical-align: middle;
+}
+
+.p-datatable .p-datatable-thead > tr > th {
+    text-align: center;
+    vertical-align: middle;
+}
+
 
 .fadein {
     animation: fadeInUp 0.3s ease-out;
@@ -73,4 +84,88 @@ html, body, #root {
     padding-top: 2rem;
 }
 
-/* 03feb2026 */
+.p-calendar {
+    width: 100%;
+}
+
+.p-calendar .p-inputtext {
+    padding-right: 2.5rem;
+}
+
+.p-datepicker {
+    transform: scale(0.9);
+    transform-origin: top left;
+}
+
+.p-datepicker .p-datepicker-title {
+    font-size: 0.9rem;
+}
+
+.p-datepicker table td > span {
+    width: 2rem;
+    height: 2rem;
+    line-height: 2rem;
+    font-size: 0.85rem;
+}
+
+.p-datepicker table th {
+    font-size: 0.75rem;
+    padding: 0.4rem;
+}
+
+.p-datepicker .p-timepicker {
+    padding: 0.5rem;
+}
+
+.p-datepicker .p-timepicker span {
+    font-size: 0.85rem;
+}
+
+.detail-dialog .p-dialog-content {
+    padding: 1.5rem;
+}
+
+.p-button-sm {
+    font-size: 0.85rem;
+}
+
+.p-datatable .p-datatable-tbody > tr {
+    cursor: default;
+}
+
+.p-datatable .p-datatable-tbody > tr:hover {
+    background: transparent !important;
+}
+
+.p-datatable .p-datatable-tbody > tr,
+.p-datatable .p-datatable-tbody > tr > td {
+    cursor: default !important;
+}
+
+.deadline-btn .p-button {
+    cursor: default;
+}
+
+.deadline-badge {
+    padding: 0.35rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.deadline-badge.neutral {
+    background: #e5e7eb;
+    color: #374151;
+}
+
+.deadline-badge.ontime {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.deadline-badge.late {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
