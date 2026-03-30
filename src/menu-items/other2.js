@@ -1,4 +1,3 @@
-// src/menu-items/other.js
 import { IconDashboard } from '@tabler/icons-react';
 import FeedbackIcon from '@mui/icons-material/Feedback';
 

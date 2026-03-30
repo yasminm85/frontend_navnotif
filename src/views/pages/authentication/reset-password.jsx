@@ -147,7 +147,6 @@ export function ResetPassword() {
       >
         <CardContent sx={{ p: 4 }}>
 
-          {/* Header */}
           <Box sx={{ textAlign: "center", mb: 3 }}>
             <Typography variant="h5" fontWeight="bold">
               Reset Password
@@ -159,7 +158,6 @@ export function ResetPassword() {
             </Typography>
           </Box>
 
-          {/* STEP 1 — Email */}
           {!isEmailSent && (
             <Box component="form" onSubmit={handleEmailSubmit}>
               <TextField
@@ -196,7 +194,6 @@ export function ResetPassword() {
             </Box>
           )}
 
-          {/* STEP 2 — OTP */}
           {isEmailSent && !isOtpSubmited && (
             <Box component="form" onSubmit={handleOtpSubmit}>
               <Stack direction="row" justifyContent="center" spacing={1.5} sx={{ mb: 3 }} onPaste={handleOtpPaste}>
@@ -265,7 +262,6 @@ export function ResetPassword() {
             </Box>
           )}
 
-          {/* STEP 3 — New Password */}
           {isEmailSent && isOtpSubmited && (
             <Box component="form" onSubmit={handlePasswordSubmit}>
               <TextField
@@ -309,7 +305,6 @@ export function ResetPassword() {
             </Box>
           )}
 
-          {/* Step Indicator */}
           <Stack direction="row" justifyContent="center" spacing={1} sx={{ mt: 4 }}>
             {[1, 2, 3].map((s) => (
               <Box

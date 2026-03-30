@@ -132,18 +132,16 @@ const TableReport = () => {
 
     const ws = XLSX.utils.aoa_to_sheet(wsData);
 
-    // merge cells
     ws["!merges"] = [
-      { s: { r: 0, c: 0 }, e: { r: 0, c: 5 } }, // Title
-      { s: { r: 1, c: 0 }, e: { r: 1, c: 5 } }, // Period
-      { s: { r: 3, c: 0 }, e: { r: 4, c: 0 } }, // No
-      { s: { r: 3, c: 1 }, e: { r: 4, c: 1 } }, // Direktorat/Divisi
-      { s: { r: 3, c: 2 }, e: { r: 4, c: 2 } }, // Total
-      { s: { r: 3, c: 3 }, e: { r: 3, c: 4 } }, // Mengikuti
-      { s: { r: 3, c: 5 }, e: { r: 4, c: 5 } }  // Belum Mengikuti
+      { s: { r: 0, c: 0 }, e: { r: 0, c: 5 } }, 
+      { s: { r: 1, c: 0 }, e: { r: 1, c: 5 } }, 
+      { s: { r: 3, c: 0 }, e: { r: 4, c: 0 } }, 
+      { s: { r: 3, c: 1 }, e: { r: 4, c: 1 } }, 
+      { s: { r: 3, c: 2 }, e: { r: 4, c: 2 } },
+      { s: { r: 3, c: 3 }, e: { r: 3, c: 4 } },  
+      { s: { r: 3, c: 5 }, e: { r: 4, c: 5 } }  
     ];
 
-    // styles
     const titleStyle = {
       font: { bold: true, sz: 14 },
       alignment: { horizontal: "center", vertical: "center" },
@@ -267,7 +265,6 @@ const TableReport = () => {
         }
       `}</style>
 
-      {/* Export Dialog */}
       <Dialog
         header="Export ke Excel"
         visible={showExportDialog}
@@ -365,7 +362,6 @@ const TableReport = () => {
         </div>
       </div>
 
-      {/* Table Container */}
       <div style={{ flex: 1, overflow: 'auto' }}>
         <table className="excel-table">
           <thead style={{ position: 'sticky', top: 0, zIndex: 10 }}>
@@ -443,7 +439,6 @@ const TableReport = () => {
         </table>
       </div>
 
-      {/* Footer */}
       <div className="card" style={{ padding: '8px 16px', marginTop: '0', borderTop: '1px solid #d1d5db', fontSize: '14px', color: '#6b7280' }}>
         <div className="flex justify-content-between align-items-center">
           <span>

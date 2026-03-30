@@ -147,10 +147,8 @@ export default function KelolaDisplay() {
                     }
                 }
 
-                // Jika jam_selesai = "selesai" gunakan end of day 23:59
                 const finalEndTime = endTime ?? endOfDay;
 
-                // Item dianggap selesai jika waktu sekarang sudah melewati finalEndTime
                 const isSelesai = now > finalEndTime;
 
                 return { ...item, isSelesai };
@@ -235,7 +233,6 @@ export default function KelolaDisplay() {
             const items = filterValidItems(response.data);
             const reminders = checkReminderActive(items);
 
-            // agenda kegiatan
             const kegiatan = items.filter(item => {
                 if (item.isSelesai) return false;
 
@@ -266,14 +263,6 @@ export default function KelolaDisplay() {
                     tgl <= agendaSelesaiFilter.endDate
                 );
 
-                // if (item.isSelesai && !isInRange) {
-                //     console.log('Item selesai tapi di luar range:', {
-                //         nama: item.nama_kegiatan,
-                //         tanggal: tgl,
-                //         filterStart: agendaSelesaiFilter.startDate,
-                //         filterEnd: agendaSelesaiFilter.endDate
-                //     });
-                // }
 
                 return isInRange;
             });
@@ -318,7 +307,6 @@ export default function KelolaDisplay() {
         }
     };
 
-    // Get duration 
     const getDisplayDuration = async () => {
         try {
             const res = await api.get('/api/media/get-duration');
@@ -339,7 +327,6 @@ export default function KelolaDisplay() {
                     }
                 }
                 
-                // Set waktu
                 if (!isNaN(d.getTime())) {
                     if (setTime === 'start') {
                         d.setHours(0, 0, 0, 0);
@@ -354,21 +341,10 @@ export default function KelolaDisplay() {
             const start = parseDate(res.data.agenda_selesai_start, 'start');
             const end = parseDate(res.data.agenda_selesai_end, 'end');
 
-            // console.log('Parsed dates:', {
-            //     startRaw: res.data.agenda_selesai_start,
-            //     endRaw: res.data.agenda_selesai_end,
-            //     start: start,
-            //     end: end,
-            //     startValid: start && !isNaN(start.getTime()),
-            //     endValid: end && !isNaN(end.getTime())
-            // });
 
             if (start && end && !isNaN(start.getTime()) && !isNaN(end.getTime())) {
                 setAgendaSelesaiFilter({ startDate: start, endDate: end });
-                // console.log('Filter agenda selesai berhasil di-set:', {
-                //     start: start.toLocaleString('id-ID'),
-                //     end: end.toLocaleString('id-ID')
-                // });
+                
             } else {
                 console.error('Failed to parse dates:', { start, end });
             }
@@ -401,7 +377,6 @@ export default function KelolaDisplay() {
         }
     };
 
-    // khususon init
     useEffect(() => {
         getDisplayDuration();
         getMedia();
@@ -426,7 +401,6 @@ export default function KelolaDisplay() {
         return () => clearInterval(interval);
     }, [agendaSelesaiFilter]);
 
-    // auto update data
     useEffect(() => {
         const saved = localStorage.getItem("playedReminders");
         if (saved) {
@@ -434,7 +408,6 @@ export default function KelolaDisplay() {
         }
     }, []);
 
-    // rotasi agenda 
     useEffect(() => {
         if (mode === MODE.TODAY) {
             return;
@@ -490,7 +463,6 @@ export default function KelolaDisplay() {
 
     }, [mode, currentMediaIndex, mediaList.length]);
 
-    // update judul
     useEffect(() => {
         if (mode === MODE.TODAY) {
             setPageTitle("AGENDA KEGIATAN HARI INI");
@@ -591,7 +563,6 @@ export default function KelolaDisplay() {
                     justifyContent: "center"
                 }}
             >
-                {/* IMAGE MODE */}
                 {mediaType === "image" && (
                     <div className={`media-wrapper ${isTransitioning ? "fade-out" : "fade-in"}`}>
                         <img
@@ -606,7 +577,6 @@ export default function KelolaDisplay() {
                     </div>
                 )}
 
-                {/* VIDEO MODE */}
                 {mediaType === "video" && (
                     <div className="media-wrapper">
                         <video
@@ -622,7 +592,6 @@ export default function KelolaDisplay() {
                     </div>
                 )}
 
-                {/* UNSUPPORTED */}
                 {mediaType !== "image" && mediaType !== "video" && (
                     <div style={{ color: "white" }}>
                         Format media tidak didukung
@@ -681,7 +650,6 @@ export default function KelolaDisplay() {
                             try {
                                 const start = new Date(row.jam_mulai);
 
-                                // reminder 25 menit sebelum kegiatan
                                 const fiveMinutesBefore = new Date(start.getTime());
                                 fiveMinutesBefore.setMinutes(fiveMinutesBefore.getMinutes() - 25);
 
@@ -689,7 +657,6 @@ export default function KelolaDisplay() {
                                     return "row-upcoming-blink";
                                 }
 
-                                // reminder 30 menit sebelum kegiatan cihuy
                                 const reminderStart = new Date(start.getTime());
                                 reminderStart.setMinutes(reminderStart.getMinutes() - 30);
                                 const reminderEnd = new Date(reminderStart);

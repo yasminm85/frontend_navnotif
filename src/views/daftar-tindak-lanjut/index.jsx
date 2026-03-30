@@ -118,7 +118,6 @@ export default function DaftarTindakLanjut() {
     );
 
     const handleOpenFileArahan = async () => {
-        console.log(currentTask)
         try {
             const res = await api.get(
                 `/api/tindaklanjut/file_tindak/${currentTask.file_arahan}`,

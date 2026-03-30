@@ -29,7 +29,6 @@ export default function DashboardTindakLanjutEVP() {
     });
 
 
-    //get all data tindak lanjut
     const getTindakLanjut = async () => {
         try {
             setLoading(true);
@@ -43,7 +42,6 @@ export default function DashboardTindakLanjutEVP() {
         setLoading(false)
 
     };
-
 
 
     useEffect(() => {
@@ -67,7 +65,6 @@ export default function DashboardTindakLanjutEVP() {
     };
 
     const handleOpenFileArahan = async () => {
-        console.log(selected)
         try {
             const res = await api.get(
                 `/api/tindaklanjut/file_tindak/${selected.file_arahan}`,
@@ -84,7 +81,6 @@ export default function DashboardTindakLanjutEVP() {
     };
 
     const handleOpenFileTindakLanjut = async () => {
-        console.log(selected)
         try {
             const res = await api.get(
                 `/api/tindaklanjut/file_tindak/${selected.file_tindaklanjut}`,
@@ -101,7 +97,6 @@ export default function DashboardTindakLanjutEVP() {
     };
 
     const getFileName = async (fileId) => {
-        console.log(fileId);
         try {
             const response = await api.get(
                 `/api/tindaklanjut/file_meta/${fileId}`,
@@ -382,8 +377,6 @@ export default function DashboardTindakLanjutEVP() {
                         </div>
                     )}
                 </Dialog>
-
-
             </MainCard>
         </div>
     );

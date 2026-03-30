@@ -34,13 +34,9 @@ export default function DashboardEVP() {
     const [visible2, setVisible2] = useState(false);
     const [errors, setErrors] = useState({});
 
-
-
-    //get all data disposisi
     const getDataDisposisi = async () => {
         try {
             setLoading(true);
-            // console.log(token);
             const response = await api.get('/api/task/disposisi', {
                 headers: { Authorization: `Bearer ${token}` }
             });
@@ -56,9 +52,7 @@ export default function DashboardEVP() {
         getDataDisposisi();
     }, []);
 
-    // laporan body template buat data table
     const laporanBodyTemplate = (rowData) => {
-        // console.log(rowData);
         return (
             <div className="flex gap-2">
                 <Button
@@ -79,7 +73,6 @@ export default function DashboardEVP() {
     };
 
     const laporanTambahanBodyTemplate = (rowData) => {
-        // console.log(rowData);
         return (
             <div className="flex gap-2">
                 <Button
@@ -110,8 +103,6 @@ export default function DashboardEVP() {
 
     }
 
-
-    // setting date 
     const formDate = (date) => {
         if (!date) return "";
 
@@ -122,7 +113,6 @@ export default function DashboardEVP() {
         });
     };
 
-    // setting time
     const formTime = (date) => {
         if (!date) return "Selesai";
 
@@ -207,7 +197,6 @@ export default function DashboardEVP() {
         <div className="card">
             <MainCard title="Dashboard">
 
-                {/* Laporan */}
                 <Dialog
                     header="Laporan Disposisi"
                     visible={showLaporan}
@@ -290,7 +279,6 @@ export default function DashboardEVP() {
                 </Dialog>
 
 
-                {/* Laporan Tambahan*/}
                 <Dialog
                     header="Laporan Disposisi"
                     visible={showLaporanTambahan}
@@ -363,7 +351,6 @@ export default function DashboardEVP() {
                     style={{ width: '50vw' }}
                     onHide={() => setVisible2(false)}
                 >
-                    {/* Render HTML yang ada di laporan yaaks*/}
                     <div
                         className="ql-editor"
                         dangerouslySetInnerHTML={{ __html: selectedLaporanTambahan }}
@@ -374,7 +361,6 @@ export default function DashboardEVP() {
                     />
                 </Dialog>
 
-                {/* TABLE */}
                 <DataTable
                     value={showDisposisi}
                     paginator rows={5}
@@ -385,7 +371,6 @@ export default function DashboardEVP() {
                     <Column header="Nama Pegawai" body={(row) => namaPegawaiTemplate(row.nama_yang_dituju)} style={{ minWidth: '10rem' }} />
                     <Column field="tanggal" header="Tanggal" body={(row) => formDate(row.tanggal)} style={{ minWidth: '10rem' }} />
                     <Column header="Jam" body={(row) => `${formTime(row.jam_mulai)} - ${formTime(row.jam_selesai)}`} style={{ minWidth: '10rem' }} />
-                    {/* <Column field="tempat" header="Tempat" style={{ minWidth: '8rem' }} /> */}
                      <Column
                                             header="Tempat"
                                             body={(rowData) => {
@@ -401,7 +386,6 @@ export default function DashboardEVP() {
                     <Column field="laporan" header="Laporan" body={laporanBodyTemplate} style={{ minWidth: '8rem', textAlign: 'center' }} />
                     <Column header="Status Laporan" body={statusBodyTemplate} style={{ minWidth: '8rem' }} />
                     <Column field="laporan_tambahan" header="Laporan Tambahan" body={laporanTambahanBodyTemplate} style={{ minWidth: '8rem', textAlign: 'center' }} />
-                    {/*  Action */}
                 </DataTable>
 
             </MainCard>

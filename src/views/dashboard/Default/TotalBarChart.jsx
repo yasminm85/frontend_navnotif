@@ -2,24 +2,18 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import api from '../../../api/axios';
 
-
-// material-ui
 import { useTheme } from '@mui/material/styles';
 import Grid from '@mui/material/Grid2';
 import Typography from '@mui/material/Typography';
 
-// third party
 import ApexCharts from 'apexcharts';
 import Chart from 'react-apexcharts';
-import axios from 'axios';
 
-// project imports
 import useConfig from 'hooks/useConfig';
 import SkeletonTotalBarChart from 'ui-component/cards/Skeleton/TotalBarChart';
 import MainCard from 'ui-component/cards/MainCard';
 import { gridSpacing } from 'store/constant';
 
-// chart data (baseline config)
 import chartData from './chart-data/total-bar-chart';
 
 export default function TotalBarChart({ isLoading }) {

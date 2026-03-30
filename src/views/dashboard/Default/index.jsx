@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react';
 
-// material-ui
 import Grid from '@mui/material/Grid2';
 
-// project imports
 import TotalDispo from './TotalDispo';
 import TotalBarChart from './TotalBarChart';
 import TableReport from '../TableReport';
@@ -12,7 +10,6 @@ import { getUserDetail } from '../../../features/authSlice';
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
-// ==============================|| DEFAULT DASHBOARD ||============================== //
 
 export default function Dashboard() {
   const [isLoading, setLoading] = useState(true);

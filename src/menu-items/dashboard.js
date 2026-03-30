@@ -8,7 +8,6 @@ import FeedbackIcon from '@mui/icons-material/Feedback';
 // constant
 const icons = { IconDashboard };
 
-// ==============================|| DASHBOARD MENU ITEMS ||============================== //
 
 const dashboard = {
   id: 'dashboard',

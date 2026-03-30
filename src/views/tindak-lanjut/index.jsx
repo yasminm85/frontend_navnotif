@@ -44,7 +44,6 @@ export default function TindakLanjut() {
         return newErrors;
     };
 
-    // get data pegawai
     const fetchPegawai = async () => {
         try {
             const res = await api.get('/api/auth/getEmp', {
@@ -61,7 +60,6 @@ export default function TindakLanjut() {
         }
     };
 
-    //get all data tindak lanjut
     const getTindakLanjut = async () => {
         try {
             setLoading(true);
@@ -98,7 +96,6 @@ export default function TindakLanjut() {
         setForm(prev => ({ ...prev, [field]: file }));
     };
 
-    // handle submit form
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -108,7 +105,6 @@ export default function TindakLanjut() {
 
         const pegawaiIds = selectedpegawai.map((p) => p._id);
         const formData = new FormData();
-        console.log(pegawaiIds);
 
         formData.append("personil_yang_dituju", JSON.stringify(pegawaiIds));
         formData.append("judul_arahan", form.judulArahan);
@@ -324,5 +320,3 @@ export default function TindakLanjut() {
     );
 
 }
-
-// 03feb2026

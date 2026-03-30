@@ -13,7 +13,6 @@ import { Box, Typography, Paper } from '@mui/material';
 import { Calendar } from 'primereact/calendar';
 import MainCard from 'ui-component/cards/MainCard';
 import Grid from '@mui/material/Grid';
-import axios from 'axios';
 import Swal from 'sweetalert2';
 import api from '../../api/axios';
 
@@ -62,7 +61,6 @@ export default function KelolaDisplay() {
         endDate: null
     });
 
-    // setting agenda
     const [agendaSettings, setAgendaSettings] = useState({
         enableRotation: true,
         modes: [
@@ -113,7 +111,6 @@ export default function KelolaDisplay() {
                 const d = new Date(timeRangeStr);
                 if (!isNaN(d.getTime())) return d;
 
-                // format jam
                 try {
                     const parts = timeRangeStr.split("-");
                     const timeStr = takeEnd ? parts[1].trim() : parts[0].trim();
@@ -200,7 +197,6 @@ export default function KelolaDisplay() {
         setPreviewCount(total);
     }, [agendaSelesaiFilter, agendaSelesaiList]);
 
-    // fetch data agenda
     const fetchAgendaSelesaiFilter = async () => {
         try {
             const res = await api.get(
@@ -218,15 +214,13 @@ export default function KelolaDisplay() {
         }
     };
 
-    // Media Handlers
     const handleAddMedia = async (e) => {
         e.preventDefault();
 
         const formData = new FormData();
         formData.append("display_path", form.file);
         formData.append("duration", form.duration);
-        // console.log(form.file);
-        // console.log(form.duration);
+        
         let response = await api.post(
             "/api/media/create-media",
             formData,
@@ -286,7 +280,6 @@ export default function KelolaDisplay() {
     };
 
 
-    // simpan agenda setting
     const handleSaveAgendaSettings = async () => {
         const { startDate, endDate } = agendaSelesaiFilter;
 
@@ -337,7 +330,6 @@ export default function KelolaDisplay() {
         fetchAgendaSelesaiFilter();
     }, []);
 
-    // Template Function
     const typeBodyTemplate = (rowData) => {
         const isImage = rowData.mimetype?.startsWith('image/');
         const isVideo = rowData.mimetype?.startsWith('video/');
@@ -367,7 +359,6 @@ export default function KelolaDisplay() {
 
 
     const actionBodyTemplate = (rowData) => {
-        // console.log(rowData._id);
         return (
             <div className="flex gap-2">
                 <Button
@@ -383,7 +374,6 @@ export default function KelolaDisplay() {
 
     const totalDuration = media.reduce((sum, item) => sum + item.duration, 0);
     const activeModes = agendaSettings.modes.filter(m => m.enabled);
-    // const totalAgendaDuration = activeModes.reduce((sum, mode) => sum + mode.duration, 0);
 
     return (
         <Box sx={{ p: 3 }}>
@@ -397,9 +387,7 @@ export default function KelolaDisplay() {
                 </Typography>
 
                 <TabView activeIndex={activeIndex} onTabChange={(e) => setActiveIndex(e.index)}>
-                    {/* Kelola Media */}
                     <TabPanel header="Kelola Media" leftIcon="pi pi-image mr-2">
-                        {/* Summary Cards */}
                         <Grid container spacing={2} sx={{ mb: 3 }}>
                             <Grid item xs={12} md={4}>
                                 <Paper sx={{ p: 2, textAlign: 'center', bgcolor: '#e3f2fd' }}>
@@ -436,7 +424,6 @@ export default function KelolaDisplay() {
                             </Grid>
                         </Grid>
 
-                        {/* Kelola Media Table */}
                         <Card>
                             <div className="flex justify-content-between align-items-center mb-3">
                                 <h3 className="m-0">Daftar Media</h3>
@@ -486,7 +473,6 @@ export default function KelolaDisplay() {
                         </Card>
                     </TabPanel>
 
-                    {/* Pengaturan agenda */}
                     <TabPanel header="Pengaturan Agenda" leftIcon="pi pi-calendar mr-2">
 
                         <Card className="mb-3">
@@ -581,7 +567,6 @@ export default function KelolaDisplay() {
                 </TabView>
             </MainCard>
 
-            {/* Dialog atau Pop Up Tambah Media */}
             <Dialog
                 header='Tambah Media Baru'
                 visible={showMediaDialog}
@@ -635,7 +620,6 @@ export default function KelolaDisplay() {
                     </div>
                 </div>
             </Dialog>
-            {/* End Dialog Tambah Media */}
         </Box>
     );
 }

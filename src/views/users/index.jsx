@@ -41,7 +41,6 @@ export default function Disposisi() {
             [field]: value
         }));
 
-        // Clear error when user types
         if (errors[field]) {
             setErrors(prev => ({
                 ...prev,
@@ -62,7 +61,6 @@ export default function Disposisi() {
     };
 
 
-    // get data pegawai
     const fetchPegawai = async () => {
         try {
             const res = await api.get('/api/auth/getAll', {
@@ -84,7 +82,6 @@ export default function Disposisi() {
     }, []);
 
 
-    // handle submit form
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -172,8 +169,6 @@ export default function Disposisi() {
     };
 
 
-
-    // handle delete button
     const handleDelete = async (id) => {
 
         Swal.fire({
@@ -206,22 +201,10 @@ export default function Disposisi() {
 
     };
 
-    // action view, edit, and delete
     const actionBodyTemplate = (rowData) => {
         return (
             <div className="flex gap-2">
 
-                {/* VIEW */}
-                {/* <Button
-                    icon="pi pi-eye"
-                    className="p-button-rounded p-button-info p-button-sm"
-                    onClick={() => {
-                        setSelectedData(rowData);
-                        setShowView(true);
-                    }}
-                /> */}
-
-                {/* EDIT */}
                 <Button
                     icon="pi pi-pencil"
                     className="p-button-rounded p-button-warning p-button-sm"
@@ -240,7 +223,6 @@ export default function Disposisi() {
                     }}
                 />
 
-                {/* DELETE */}
                 <Button
                     icon="pi pi-trash"
                     className="p-button-rounded p-button-danger p-button-sm"
@@ -276,7 +258,6 @@ export default function Disposisi() {
                     />
                 </div>
 
-                {/* FORM */}
                 <Dialog
                     header={editMode ? "Edit User" : "Form User"}
                     visible={showForm}
@@ -286,7 +267,6 @@ export default function Disposisi() {
                     footer={footer}
                 >
 
-                    {/* Nama */}
                     <div className="mb-3">
                         <InputText
                             placeholder="Nama *"
@@ -297,7 +277,6 @@ export default function Disposisi() {
                         {errors.name && <small className="p-error">{errors.name}</small>}
                     </div>
 
-                    {/* Email */}
                     <div className="mb-3">
                         <InputText
                             placeholder="Email *"
@@ -308,7 +287,6 @@ export default function Disposisi() {
                         {errors.email && <small className="p-error">{errors.email}</small>}
                     </div>
 
-                    {/* Passeord */}
                     <div className="mb-3">
                         <InputText
                             type='password'
@@ -320,7 +298,6 @@ export default function Disposisi() {
                         {errors.password && <small className="p-error">{errors.password}</small>}
                     </div>
 
-                    {/* Role */}
                     <div className="mb-3">
                         <Dropdown
                             placeholder="Pilih Role *"
@@ -340,7 +317,6 @@ export default function Disposisi() {
 
                 </Dialog>
 
-                {/* TABLE */}
                 <DataTable
                     value={pegawaisel}
                     paginator rows={5}
@@ -350,7 +326,6 @@ export default function Disposisi() {
                     <Column field="name" header="Nama" bodyClassName="text-center" style={{ minWidth: '5rem' }} headerStyle={{ textAlign: "center", justifyContent: "center", display: "flex" }} />
                     <Column field="email" header="Email" style={{ minWidth: '10rem' }} />
                     <Column field="role" header="Role" style={{ minWidth: '10rem' }} />
-                    {/*  Action */}
                     <Column header="Action" body={actionBodyTemplate} headerStyle={{ textAlign: "center", justifyContent: "center", display: "flex" }} style={{ width: "10rem" }} />
                 </DataTable>
 

@@ -33,7 +33,6 @@ export default function DaftarNotifikasi() {
     const [laporanTextTambahan, setLaporanTextTambahan] = useState('');
     const token = localStorage.getItem('token');
 
-    // fetch data disposisi
     const fetchTasks = async () => {
         try {
             setLoading(true);
@@ -52,7 +51,6 @@ export default function DaftarNotifikasi() {
         fetchTasks();
     }, []);
 
-    //validate form kalau ada laporan yang kosong belum diisi pas ngisi di form
     const validateForm = () => {
 
         let newErrors = {};
@@ -66,7 +64,6 @@ export default function DaftarNotifikasi() {
     };
 
 
-    // template buat buka data detail dan ada di data table
     const detailBodyTemplate = (rowData) => {
         return (
             <Button
@@ -91,7 +88,6 @@ export default function DaftarNotifikasi() {
     const handleFileChange = (e) => {
         const file = e.target.files[0];
 
-        // Validasi PDF
         if (file && file.type !== "application/pdf") {
             alert("File harus berupa PDF!");
             e.target.value = "";
@@ -101,7 +97,6 @@ export default function DaftarNotifikasi() {
         handleChange("file", file);
     };
 
-    // setting date 
     const formDate = (date) => {
         if (!date) return "";
 
@@ -112,7 +107,6 @@ export default function DaftarNotifikasi() {
         });
     };
 
-    // setting time
     const formTime = (date) => {
         if (!date) return "Selesai";
 
@@ -122,13 +116,11 @@ export default function DaftarNotifikasi() {
         });
     };
 
-    // set time dan tanggal
     const getLocalDateOnly = (isoString) => {
         const d = new Date(isoString);
         return new Date(d.getFullYear(), d.getMonth(), d.getDate());
     };
 
-    // setting jam apakah laporan boleh di isi, soalnya kalau belum tanggalnya tombol isi laporan bakal disable
     const isLaporanAllowed = (row) => {
         const now = new Date();
 
@@ -147,7 +139,6 @@ export default function DaftarNotifikasi() {
         return now >= start;
     };
 
-    // inih template buat kirim data pas pop up di data table
     const laporanActionTemplate = (row) => {
         const bolehLapor = isLaporanAllowed(row);
         return (
@@ -164,7 +155,6 @@ export default function DaftarNotifikasi() {
         );
     };
 
-    // action pada data table pas kalo tekan button
     const laporanTambahanActionTemplate = (row) => {
         const bolehLapor = isLaporanAllowed(row);
 
@@ -184,7 +174,6 @@ export default function DaftarNotifikasi() {
         );
     };
 
-    // simpan hasil laporan
     const handleSaveLaporan = async () => {
         if (!currentTask) return;
 
@@ -221,7 +210,6 @@ export default function DaftarNotifikasi() {
         }
     };
 
-    //simpan hasil laporan tambahan
     const handleSaveLaporanTambahan = async () => {
         if (!currentTaskTambahan) return;
 
@@ -256,7 +244,6 @@ export default function DaftarNotifikasi() {
         }
     };
 
-    // handle action file di data table saat tekan tombol lihat laporan disposisi
     const fileBodyTemplate = (fileId) => {
         if (!fileId) return <span>-</span>;
 
@@ -324,7 +311,6 @@ export default function DaftarNotifikasi() {
         <div className="card">
             <MainCard title="Daftar Notifikasi">
 
-                {/* Dialog atau Pop Up untuk membuat laporan */}
                 <Dialog
                     header="Laporan Tugas"
                     visible={showDialog}
@@ -397,9 +383,7 @@ export default function DaftarNotifikasi() {
                         </div>
                     )}
                 </Dialog>
-                {/* End */}
 
-                {/* Dialog atau Pop Up untuk membuat laporan TAMBAHAN */}
                 <Dialog
                     header="Laporan Tambahan"
                     visible={showDialogTambahan}
@@ -428,7 +412,6 @@ export default function DaftarNotifikasi() {
                                     className={errors.laporan_tambahan ? "p-invalid" : ""}
                                 />
 
-                                {/* File */}
                                 <div className="input_container">
                                     <input
                                         id="laporan_tambahan_path"
@@ -472,7 +455,6 @@ export default function DaftarNotifikasi() {
                         </div>
                     )}
                 </Dialog>
-                {/* End */}
 
                 <Dialog
                     header="Detail Notifikasi"
@@ -506,7 +488,6 @@ export default function DaftarNotifikasi() {
                     <Column field="nama_kegiatan" header="Nama Kegiatan" style={{ minWidth: '10rem' }} />
                     <Column field="tanggal" header="Tanggal" body={(row) => formDate(row.tanggal)} style={{ minWidth: '10rem' }} />
                     <Column header="Jam" body={(row) => `${formTime(row.jam_mulai)} - ${formTime(row.jam_selesai)}`} style={{ minWidth: '10rem' }} />
-                    {/* <Column field="tempat" header="Tempat" style={{ minWidth: '12rem' }} /> */}
                     <Column
                         header="Tempat"
                         body={(rowData) => {

@@ -142,7 +142,6 @@ export default function DashboardPegawai() {
   };
 
   const formTime = (date) => {
-        console.log(date);
         if (!date) return "Selesai";
 
         return new Date(date).toLocaleTimeString("id-ID", {

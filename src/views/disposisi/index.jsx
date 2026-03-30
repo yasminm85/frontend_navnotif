@@ -69,7 +69,6 @@ export default function Disposisi() {
         return newErrors;
     };
 
-    // get data pegawai
     const fetchPegawai = async () => {
         try {
             const res = await api.get('/api/auth/getEmp', {
@@ -86,11 +85,9 @@ export default function Disposisi() {
         }
     };
 
-    //get all data disposisi
     const getDataDisposisi = async () => {
         try {
             setLoading(true);
-            // console.log(token);
             const response = await api.get('/api/task/disposisi', {
                 headers: { Authorization: `Bearer ${token}` }
             });
@@ -119,7 +116,6 @@ export default function Disposisi() {
         fetchSeed();
     }, []);
 
-    //pilih ruangan
     const ruangan = [
         { label: 'SULTAN MAHMUD BADARUDDIN II - Gd. PUSAT Lt.3', value: 'SULTAN MAHMUD BADARUDDIN II - Gd. PUSAT Lt.3' },
         { label: 'AUDITORIUM PUSAT (SOEKARNO-HATTA) - Gd. PUSAT Lt.4', value: 'AUDITORIUM PUSAT (SOEKARNO-HATTA) - Gd. PUSAT Lt.4' },
@@ -127,14 +123,12 @@ export default function Disposisi() {
 
     ];
 
-    // reminder notif
     const notifOptions = [
         { label: '1 jam sebelum kegiatan', value: 'REMINDER_1H' },
         { label: '30 menit sebelum kegiatan', value: 'REMINDER_30M' },
     ];
 
 
-    // handle direktorat dropdown
     const onDirektoratChange = (e) => {
         const selectedDir = e.value;
         setSelecteddirektorat(selectedDir);
@@ -175,7 +169,6 @@ export default function Disposisi() {
     };
 
 
-    // handle submit form
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -246,7 +239,6 @@ export default function Disposisi() {
                 setShowDisposisi(prev => [...prev, response.data]);
             }
 
-            // Reset form setelah submit
             setShowForm(false);
             setEditMode(false);
             setSelectedData(null);
@@ -278,7 +270,6 @@ export default function Disposisi() {
     };
 
 
-    // handle delete button
     const handleDelete = async (id) => {
 
         Swal.fire({
@@ -312,9 +303,7 @@ export default function Disposisi() {
         });
     };
 
-    // action view, edit, and delete
     const actionBodyTemplate = (rowData) => {
-        // console.log(rowData);
         return (
             <div className="flex gap-2">
 
@@ -323,7 +312,6 @@ export default function Disposisi() {
                     icon="pi pi-eye"
                     className="p-button-rounded p-button-info p-button-sm"
                     onClick={() => {
-                        console.log("ROW DATA:", rowData);
                         setSelectedData(rowData);
                         setShowView(true);
                     }}
@@ -335,7 +323,6 @@ export default function Disposisi() {
                     className="p-button-rounded p-button-warning p-button-sm"
                     onClick={() => {
                         if (!rowData) return;
-                        // console.log(rowData);
                         const pegawaiSelected = pegawaisel.filter(p =>
                             (rowData.nama_yang_dituju || []).some(id =>
                                 id === p._id || id?._id === p._id
@@ -355,7 +342,6 @@ export default function Disposisi() {
                             selectedDirIds.includes(div.DirId)
                         );
 
-                        // form set
                         setForm({
                             ...rowData,
                             namakegiatan: rowData.nama_kegiatan || "",
@@ -393,7 +379,6 @@ export default function Disposisi() {
         );
     };
 
-    // laporan body template buat data table
     const laporanBodyTemplate = (rowData) => {
         return (
             <div className="flex gap-2">
@@ -409,7 +394,6 @@ export default function Disposisi() {
         );
     };
 
-    // catatan body template buat data table
     const catatanBodyTemplate = (rowData) => {
         return (
             <div className="flex gap-2">
@@ -425,7 +409,6 @@ export default function Disposisi() {
         );
     };
 
-    // status body template buat data table
     const statusBodyTemplate = (rowData) => {
         return (
             <i
@@ -442,7 +425,6 @@ export default function Disposisi() {
         );
     };
 
-    // file body template buat data table
     const fileBodyTemplate = (fileId) => {
         if (!fileId) return <span>-</span>;
 
@@ -473,17 +455,14 @@ export default function Disposisi() {
     };
 
 
-    // Highlight row logic
     const rowClass = (rowData) => {
         if (!rowData) return "";
 
         const now = new Date();
 
-        // tanggal kegiatan (tanpa jam)
         const baseDate = new Date(rowData.tanggal);
         baseDate.setHours(0, 0, 0, 0);
 
-        // jam mulai
         let mulai = null;
         if (rowData.jam_mulai) {
             const jm = new Date(rowData.jam_mulai);
@@ -491,7 +470,6 @@ export default function Disposisi() {
             mulai.setHours(jm.getHours(), jm.getMinutes(), 0, 0);
         }
 
-        // jam selesai
         let selesai = null;
         if (rowData.jam_selesai) {
             const js = new Date(rowData.jam_selesai);
@@ -499,7 +477,6 @@ export default function Disposisi() {
             selesai.setHours(js.getHours(), js.getMinutes(), 0, 0);
         }
 
-        // laporan sudah dibuat jadi hijau
         if (rowData.laporan_status === "SUDAH") {
             return "completed-row";
         }
@@ -507,22 +484,18 @@ export default function Disposisi() {
         const today = new Date();
         today.setHours(0, 0, 0, 0);
 
-        // tanggal sudah lewat
         if (baseDate < today) {
             return "highlight-row";
         }
 
-        // tanggal hari ini
         if (baseDate.getTime() === today.getTime()) {
-            // belum mulai
+
             if (mulai && now < mulai) return "";
 
-            // sedang berlangsung
             if (mulai && now >= mulai && (!selesai || now <= selesai)) {
                 return "highlight-row";
             }
 
-            // lewat jam selesai dan belum laporan
             if (selesai && now > selesai) {
                 return "highlight-row";
             }
@@ -531,7 +504,6 @@ export default function Disposisi() {
         return "";
     };
 
-    // setting date 
     const formDate = (date) => {
         if (!date) return "";
 
@@ -542,7 +514,6 @@ export default function Disposisi() {
         });
     };
 
-    // setting time
     const formTime = (date) => {
         if (!date) return "Selesai";
 
@@ -551,7 +522,6 @@ export default function Disposisi() {
             minute: "2-digit",
         });
     };
-
 
 
     const footer = (
@@ -569,7 +539,6 @@ export default function Disposisi() {
                             setEditMode(false);
                             setErrors({});
 
-                            // reset
                             setForm({
                                 id: null,
                                 status: "",
@@ -589,7 +558,6 @@ export default function Disposisi() {
                                 notifOptions: "",
                             });
 
-                            // reset multiselect
                             setSelectedpegawai([]);
                             setSelecteddirektorat([]);
                             setSelecteddivisi([]);
@@ -599,7 +567,6 @@ export default function Disposisi() {
                     />
                 </div>
 
-                {/* FORM */}
                 <Dialog
                     header={editMode ? "Edit Disposisi" : "Form Disposisi"}
                     visible={showForm}
@@ -609,7 +576,6 @@ export default function Disposisi() {
                     footer={footer}
                 >
 
-                    {/* Nama Kegiatan */}
                     <div className="mb-3">
                         <InputText
                             placeholder="Nama kegiatan *"
@@ -620,7 +586,6 @@ export default function Disposisi() {
                         {errors.namakegiatan && <small className="p-error">{errors.namakegiatan}</small>}
                     </div>
 
-                    {/* Agenda */}
                     <div className="mb-3">
                         <InputText
                             placeholder="Agenda kegiatan *"
@@ -631,7 +596,6 @@ export default function Disposisi() {
                         {errors.agenda && <small className="p-error">{errors.agenda}</small>}
                     </div>
 
-                    {/* Nama yang dituju */}
                     <div className="mb-3">
                         <MultiSelect
                             placeholder="Nama yang dituju *"
@@ -645,7 +609,6 @@ export default function Disposisi() {
                         {errors.namayangdituju && <small className="p-error">{errors.namayangdituju}</small>}
                     </div>
 
-                    {/* Direktorat */}
                     <div className="mb-3">
                         <MultiSelect
                             placeholder="Direktorat Yang Mengundang*"
@@ -659,7 +622,6 @@ export default function Disposisi() {
                         {errors.direktorat && <small className="p-error">{errors.direktorat}</small>}
                     </div>
 
-                    {/* Divisi */}
                     <div className="mb-3">
                         <MultiSelect
                             className="w-full"
@@ -676,7 +638,6 @@ export default function Disposisi() {
                         {errors.divisi && <small className="p-error">{errors.divisi}</small>}
                     </div>
 
-                    {/* Tanggal */}
                     <div className="mb-3">
                         <Calendar
                             placeholder="Tanggal *"
@@ -688,7 +649,6 @@ export default function Disposisi() {
                         {errors.tanggal && <small className="p-error">{errors.tanggal}</small>}
                     </div>
 
-                    {/* Jam Mulai */}
                     <div className="flex gap-2 mb-2">
                         <div className="p-inputgroup w-1/2">
                             <Calendar
@@ -701,7 +661,6 @@ export default function Disposisi() {
                             />
                         </div>
 
-                        {/* Jam Selesai */}
                         <div className="p-inputgroup w-1/2">
                             <Calendar
                                 placeholder="Jam Selesai "
@@ -725,7 +684,6 @@ export default function Disposisi() {
                         />
                     </div>
 
-                    {/* Tempat */}
                     <div className="mt-3 mb-3">
                         <InputText
                             placeholder="Tempat "
@@ -736,7 +694,6 @@ export default function Disposisi() {
                         <small className="text-secondary"> *Tempat diisi jika Ruangan tidak tersedia </small>
                     </div>
 
-                    {/* File */}
                     <input
                         type="file"
                         className="w-full mb-3"
@@ -745,7 +702,6 @@ export default function Disposisi() {
                     />
 
 
-                    {/* Catatan */}
                     <InputTextarea
                         placeholder="Catatan"
                         className="w-full"
@@ -754,7 +710,6 @@ export default function Disposisi() {
                         onChange={(e) => handleChange("catatan", e.target.value)}
                     />
 
-                    {/* Dresscode */}
                     <div className='mt-3 mb-3'>
                         <InputText
                             placeholder="Dresscode"
@@ -765,7 +720,6 @@ export default function Disposisi() {
                         />
                     </div>
 
-                    {/* Pengingat Notifikasi */}
                     <div className="mb-3">
                         <label className="block mb-1 font-semibold">
                             Atur Pengingat Notifikasi
@@ -781,7 +735,6 @@ export default function Disposisi() {
                     </div>
                 </Dialog>
 
-                {/* DETAIL */}
                 <Dialog
                     header="Catatan Disposisi"
                     visible={showDetail}
@@ -795,7 +748,6 @@ export default function Disposisi() {
                     <p>{selectedNote}</p>
                 </Dialog>
 
-                {/* Laporan */}
                 <Dialog
                     header="Laporan Disposisi"
                     visible={showLaporan}
@@ -813,8 +765,6 @@ export default function Disposisi() {
                 </Dialog>
 
 
-
-                {/* VIEW DETAIL LENGKAP */}
                 <Dialog
                     header="Detail Disposisi"
                     visible={showView}
@@ -857,7 +807,6 @@ export default function Disposisi() {
                     )}
                 </Dialog>
 
-                {/* TABLE */}
                 <DataTable
                     value={showDisposisi}
                     paginator
@@ -891,7 +840,6 @@ export default function Disposisi() {
 
                     <Column field="laporan" header="Laporan" body={laporanBodyTemplate} style={{ minWidth: '8rem', textAlign: 'center' }} />
                     <Column header="Catatan" body={catatanBodyTemplate} style={{ minWidth: '8rem', textAlign: 'center' }} />
-                    {/*  Action */}
                     <Column header="Action" body={actionBodyTemplate} headerStyle={{ textAlign: "center", justifyContent: "center", display: "flex" }} style={{ width: "10rem" }} />
                 </DataTable>
 

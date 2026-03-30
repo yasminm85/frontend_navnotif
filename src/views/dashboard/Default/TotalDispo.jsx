@@ -15,7 +15,6 @@ import SkeletonTotalOrderCard from "ui-component/cards/Skeleton/EarningCard";
 
 // assets
 import AssignmentIcon from "@mui/icons-material/Assignment";
-import axios from "axios";
 
 export default function TotalDispo() {
   const theme = useTheme();
