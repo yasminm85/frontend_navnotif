@@ -63,11 +63,11 @@ export default function Login() {
                   {/* Logo + Title */}
                   <Grid container alignItems="center" spacing={1}>
                     <Grid><Logo /></Grid>
-                    <Grid>
+                    {/* <Grid>
                       <Typography gutterBottom variant={downMD ? 'h3' : 'h2'}>
                         NavNotif
                       </Typography>
-                    </Grid>
+                    </Grid> */}
                   </Grid>
 
                   {/* Title */}

@@ -6,6 +6,6 @@ export default function Logo() {
   const theme = useTheme();
 
   return (
-    <img src={logo} width="80" height="80"/>
+    <img src={logo} width="120" height="120"/>
   );
 }
