@@ -101,6 +101,8 @@ export default function TindakLanjut() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        setShowForm(false);
+
         const validation = validateForm();
         setErrors(validation);
         if (Object.keys(validation).length > 0) return;

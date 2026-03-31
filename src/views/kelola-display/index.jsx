@@ -279,7 +279,11 @@ export default function KelolaDisplay() {
     };
 
 
-    const handleSaveAgendaSettings = async () => {
+    const handleSaveAgendaSettings = async (e) => {
+        e.preventDefault();
+
+        setShowMediaDialog(false);
+
         const { startDate, endDate } = agendaSelesaiFilter;
 
         if (!startDate || !endDate) {

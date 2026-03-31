@@ -85,6 +85,8 @@ export default function Disposisi() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        setShowForm(false);
+
         const validation = validateForm();
         setErrors(validation);
 
@@ -97,13 +99,13 @@ export default function Disposisi() {
             if (editMode && selectedData?._id) {
 
                 Swal.fire({
-                                title: 'Menyimpan data...',
-                                text: 'Mohon tunggu sebentar',
-                                allowOutsideClick: false,
-                                didOpen: () => {
-                                Swal.showLoading();
-                                }
-                            });
+                    title: 'Menyimpan data...',
+                    text: 'Mohon tunggu sebentar',
+                    allowOutsideClick: false,
+                    didOpen: () => {
+                    Swal.showLoading();
+                    }
+                });
                             
                 res = await api.patch(`/api/auth/update/user/${selectedData._id}`, {
                     name: form.name,
