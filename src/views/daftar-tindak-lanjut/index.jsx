@@ -12,17 +12,16 @@ import 'primeicons/primeicons.css';
 import 'primeflex/primeflex.css';
 import './app.css';
 import CountUp from 'react-countup';
-import api from '../../api/axios';
+import api from '../../api/axios'
 
 export default function DaftarTindakLanjut() {
     const token = localStorage.getItem('token');
     const [loading, setLoading] = useState(true);
-    const [filename, setFilename] = useState('');
     const [tasks, setTasks] = useState([]);
     const [showDialog, setShowDialog] = useState(false);
     const [currentTask, setCurrentTask] = useState(null);
     const [filterStatus, setFilterStatus] = useState('ALL');
-
+    const [filename, setFilename] = useState('');
     const [form, setForm] = useState({
         judulTindakLanjut: '',
         isiTindakLanjut: '',
@@ -118,6 +117,8 @@ export default function DaftarTindakLanjut() {
     );
 
     const handleOpenFileArahan = async () => {
+        if (!currentTask?.file_arahan) return;
+
         try {
             const res = await api.get(
                 `/api/tindaklanjut/file_tindak/${currentTask.file_arahan}`,
@@ -132,6 +133,7 @@ export default function DaftarTindakLanjut() {
             console.error("Gagal buka file laporan", err);
         }
     };
+
 
     const getFileName = async () => {
         try {
@@ -205,7 +207,6 @@ export default function DaftarTindakLanjut() {
                         paginator
                         rows={5}
                         stripedRows
-                        rowHover
                         showGridlines
                         className="h-full border-round-lg custom-datatable"
                         emptyMessage={
@@ -238,6 +239,35 @@ export default function DaftarTindakLanjut() {
                         />
 
                         <Column
+                            header="Tanggal Dibuat"
+                            body={(row) =>
+                                row.createdAt ? new Date(row.createdAt).toLocaleDateString('id-ID', {
+                                    day: '2-digit',
+                                    month: 'short',
+                                    year: 'numeric'
+                                }) : '-'
+                            }
+                            style={{ width: '14%' }}
+                        />
+
+                        <Column
+                            header="Deadline"
+                            body={(row) => {
+                                if (!row.deadline) return <span className="deadline-badge neutral">-</span>;
+                                const isLate = new Date(row.deadline) < new Date();
+                                return (
+                                    <span className={`deadline-badge ${isLate ? 'late' : 'ontime'}`}>
+                                        {new Date(row.deadline).toLocaleDateString('id-ID', {
+                                            day: '2-digit',
+                                            month: 'short',
+                                            year: 'numeric'
+                                        })}
+                                    </span>
+                                );
+                            }}
+                            style={{ width: '14%' }}
+                        />
+                        <Column
                             header="Aksi"
                             body={aksiTemplate}
                             style={{ textAlign: 'center', width: '16%' }}
@@ -264,7 +294,11 @@ export default function DaftarTindakLanjut() {
                         <div className="flex flex-column gap-4">
 
                             <div className="arahan-box">
-                                <span className="font-medium">Arahan Admin</span>
+                                <div className="section-title">
+                                    <i className="pi pi-directions" />
+                                    <span>Arahan Admin</span>
+                                </div>
+
                                 <h4 className="mt-2">{currentTask.judul_arahan}</h4>
                                 <div
                                     dangerouslySetInnerHTML={{
@@ -273,10 +307,13 @@ export default function DaftarTindakLanjut() {
                                 />
                             </div>
 
+
                             <div>
-                                <label className="font-medium block mb-2">
-                                    Dokumen Arahan
+                                <label className="section-title">
+                                    <i className="pi pi-file" />
+                                    <span>Dokumen Arahan</span>
                                 </label>
+
 
                                 {currentTask.file_arahan ? (
                                     <div
@@ -300,9 +337,11 @@ export default function DaftarTindakLanjut() {
 
 
                             <div>
-                                <label className="font-medium block mb-2">
-                                    Judul Tindak Lanjut
+                                <label className="section-title">
+                                    <i className="pi pi-tag" />
+                                    <span>Judul Tindak Lanjut</span>
                                 </label>
+
                                 <input
                                     className="p-inputtext w-full"
                                     value={form.judulTindakLanjut}
@@ -313,9 +352,11 @@ export default function DaftarTindakLanjut() {
                             </div>
 
                             <div>
-                                <label className="font-medium block mb-2">
-                                    Isi Tindak Lanjut
+                                <label className="section-title">
+                                    <i className="pi pi-pencil" />
+                                    <span>Isi Tindak Lanjut</span>
                                 </label>
+
                                 <Editor
                                     value={form.isiTindakLanjut}
                                     onTextChange={(e) =>
@@ -326,7 +367,8 @@ export default function DaftarTindakLanjut() {
                             </div>
 
                             <div>
-                                <label className="font-medium block mb-2">
+                                <label className="section-title">
+                                    <i className="pi pi-paperclip" />
                                     File Pendukung
                                 </label>
                                 <input

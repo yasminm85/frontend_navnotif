@@ -15,8 +15,7 @@ import 'primeicons/primeicons.css';
 import 'primeflex/primeflex.css';
 import './app.css';
 import Swal from 'sweetalert2';
-import axios from 'axios';
-import api from '../../api/axios'
+import api from '../../api/axios';
 
 export default function TindakLanjut() {
     const token = localStorage.getItem('token');
@@ -49,7 +48,7 @@ export default function TindakLanjut() {
 
     const fetchPegawai = async () => {
         try {
-            const res = await axios.get('http://localhost:3000/api/auth/getEmp', {
+            const res = await api.get('/api/auth/getEmp', {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -102,13 +101,14 @@ export default function TindakLanjut() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        setShowForm(false);
+
         const validation = validateForm();
         setErrors(validation);
         if (Object.keys(validation).length > 0) return;
 
         const pegawaiIds = selectedpegawai.map((p) => p._id);
         const formData = new FormData();
-        console.log(pegawaiIds);
 
         formData.append("personil_yang_dituju", JSON.stringify(pegawaiIds));
         formData.append("judul_arahan", form.judulArahan);
@@ -120,6 +120,15 @@ export default function TindakLanjut() {
         if (form.file) formData.append("file_arahan", form.file);
 
         try {
+
+            Swal.fire({
+                title: 'Menyimpan data...',
+                text: 'Mohon tunggu sebentar',
+                allowOutsideClick: false,
+                didOpen: () => {
+                Swal.showLoading();
+                }
+            });
             let response;
             response = await api.post(
                 '/api/tindaklanjut/create-tindaklanjut',
@@ -131,6 +140,11 @@ export default function TindakLanjut() {
 
             setShowArahan(prev => [...prev, response.data]);
 
+            Swal.fire({
+                            title: "Berhasil!",
+                            text: "Data disposisi berhasil diupdate.",
+                            icon: "success"
+                            });
 
             setShowForm(false);
             setForm({
@@ -146,6 +160,11 @@ export default function TindakLanjut() {
 
         } catch (error) {
             console.error("Error disposisi:", error.response?.data || error.message);
+            Swal.fire({
+                        title: "Gagal!",
+                        text: error.response?.data?.message || "Terjadi kesalahan pada server.",
+                        icon: "error"
+                    });
         }
     };
 
@@ -221,7 +240,7 @@ export default function TindakLanjut() {
                 <MainCard title="Tindak Lanjut" className="h-full">
                     <div className="flex justify-content-between align-items-center mb-3">
                         <div>
-                            <h3 className="m-0">📌 Daftar Tindak Lanjut</h3>
+                            <h3 className="m-0">Daftar Tindak Lanjut</h3>
                             <small className="text-500">
                                 Data arahan dan tindak lanjut yang telah dibuat
                             </small>
@@ -363,7 +382,7 @@ export default function TindakLanjut() {
                                 value={form.deadline}
                                 onChange={(e) => handleChange("deadline", e.value)}
                                 showIcon={false}
-                                placeholder="Pilih tanggal & jam deadline"
+                                placeholder="Pilih tanggal"
                                 className="w-full"
                                 inputClassName="w-full"
                                 minDate={new Date()}

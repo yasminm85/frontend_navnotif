@@ -59,12 +59,34 @@ html, body, #root {
     }
 }
 
-.arahan-box {
-    background: linear-gradient(135deg, #eff6ff, #ffffff);
-    border-left: 5px solid #3b82f6;
-    padding: 1rem;
-    border-radius: 8px;
+.arahan-line {
+    padding-left: 1rem;
+    border-left: 4px solid #2563eb;
 }
+
+.arahan-line h4 {
+    margin: 0.4rem 0 0.6rem;
+    font-weight: 600;
+    color: #111827;
+}
+
+.arahan-content {
+    color: #374151;
+    line-height: 1.6;
+}
+
+.arahan-line.admin {
+    border-left-color: #0ea5e9;
+}
+
+.arahan-line.warning {
+    border-left-color: #f97316;
+}
+
+.arahan-line.success {
+    border-left-color: #22c55e;
+}
+
 
 .arahan-label {
     font-size: 0.75rem;
@@ -147,10 +169,15 @@ html, body, #root {
 .custom-datatable .p-datatable-tbody > tr {
     transition: background-color 0.2s ease;
 }
-
-.custom-datatable .p-datatable-tbody > tr:hover {
-    background-color: #f9fafb;
+.custom-datatable .p-datatable-tbody > tr,
+.custom-datatable .p-datatable-tbody > tr > td {
+    background-color: transparent !important;
 }
+.custom-datatable .p-datatable-tbody > tr:hover,
+.custom-datatable .p-datatable-tbody > tr:hover > td {
+    background-color: transparent !important;
+}
+
 
 .summary-card {
     flex: 1;
@@ -195,4 +222,98 @@ html, body, #root {
     color: #2563eb;
 }
 
+.summary-card {
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.summary-card:hover {
+    background-color: #f3f4f6; 
+    transform: translateY(-2px);
+}
+
+.summary-card.active {
+    border: 2px solid #2563eb;
+}
+
+
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 0.5rem;
+}
+
+.section-title i {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    color: #2563eb;
+    background: #eff6ff;
+}
+
+.arahan-box {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.arahan-box h4 {
+    margin: 0.25rem 0 0.75rem;
+    color: #111827;
+}
+
+.section-title .pi-directions {
+    background: #ecfeff;
+    color: #0891b2;
+}
+
+.section-title .pi-file {
+    background: #fff7ed;
+    color: #ea580c;
+}
+
+.section-title .pi-tag {
+    background: #f0fdf4;
+    color: #16a34a;
+}
+
+.section-title .pi-pencil {
+    background: #fdf2f8;
+    color: #db2777;
+}
+
+.section-title .pi-paperclip {
+    background: #fef2f2;
+    color: #dc2626;
+}
+
+.deadline-badge {
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    display: inline-block;
+    min-width: 80px;
+    text-align: center;
+}
+.deadline-badge.ontime { background-color: #d1fae5; color: #065f46; }  
+.deadline-badge.late { background-color: #fee2e2; color: #b91c1c; }    
+.deadline-badge.neutral { background-color: #f3f4f6; color: #374151; } 
+
+.isi-arahan { font-size: 0.9rem; line-height: 1.4rem; }
+.arahan-title { font-weight: 600; font-size: 0.95rem; }
+.text-truncate { 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    white-space: nowrap; 
+}
 
