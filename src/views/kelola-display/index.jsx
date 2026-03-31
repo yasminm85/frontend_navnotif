@@ -296,6 +296,14 @@ export default function KelolaDisplay() {
         const end = endDate.toISOString().split('T')[0];
 
         try {
+            Swal.fire({
+                title: 'Menyimpan data...',
+                text: 'Mohon tunggu sebentar',
+                allowOutsideClick: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            });
             await api.post(
                 '/api/media/create-duration',
                 {

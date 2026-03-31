@@ -95,6 +95,16 @@ export default function Disposisi() {
         try {
             let res;
             if (editMode && selectedData?._id) {
+
+                Swal.fire({
+                                title: 'Menyimpan data...',
+                                text: 'Mohon tunggu sebentar',
+                                allowOutsideClick: false,
+                                didOpen: () => {
+                                Swal.showLoading();
+                                }
+                            });
+                            
                 res = await api.patch(`/api/auth/update/user/${selectedData._id}`, {
                     name: form.name,
                     email: form.email,

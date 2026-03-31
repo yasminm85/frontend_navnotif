@@ -213,6 +213,16 @@ export default function Disposisi() {
         try {
             let response;
             if (editMode && selectedData?._id) {
+
+                Swal.fire({
+                title: 'Menyimpan data...',
+                text: 'Mohon tunggu sebentar',
+                allowOutsideClick: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+                });
+
                 response = await api.patch(
                     `/api/task/disposisi/${selectedData._id}`,
                     formData,
@@ -227,7 +237,23 @@ export default function Disposisi() {
                     )
                 );
 
+                Swal.fire({
+                title: "Berhasil!",
+                text: "Data disposisi berhasil dibuat.",
+                icon: "success"
+                });
+
             } else {
+
+                Swal.fire({
+                title: 'Menyimpan data...',
+                text: 'Mohon tunggu sebentar',
+                allowOutsideClick: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+                });
+
                 response = await api.post(
                     '/api/task/disposisi',
                     formData,
@@ -237,6 +263,12 @@ export default function Disposisi() {
                 );
 
                 setShowDisposisi(prev => [...prev, response.data]);
+
+                Swal.fire({
+                title: "Berhasil!",
+                text: "Data disposisi berhasil diupdate.",
+                icon: "success"
+                });
             }
 
             setShowForm(false);
@@ -266,6 +298,11 @@ export default function Disposisi() {
 
         } catch (error) {
             console.error("Error disposisi:", error.response?.data || error.message);
+            Swal.fire({
+            title: "Gagal!",
+            text: error.response?.data?.message || "Terjadi kesalahan pada server.",
+            icon: "error"
+        });
         }
     };
 
