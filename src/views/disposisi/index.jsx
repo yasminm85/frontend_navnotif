@@ -241,7 +241,7 @@ export default function Disposisi() {
 
                 Swal.fire({
                 title: "Berhasil!",
-                text: "Data disposisi berhasil dibuat.",
+                text: "Data disposisi berhasil diupdate.",
                 icon: "success"
                 });
 
@@ -268,7 +268,7 @@ export default function Disposisi() {
 
                 Swal.fire({
                 title: "Berhasil!",
-                text: "Data disposisi berhasil diupdate.",
+                text: "Data disposisi berhasil dibuat.",
                 icon: "success"
                 });
             }
