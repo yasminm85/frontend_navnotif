@@ -1,27 +1,22 @@
-/* sedang berlangsung */
 .row-ongoing {
     background-color: #C7EEFF !important;
     font-weight: bold;
 }
 
-/* Warna hijau untuk baris yang sedang diingatkan */
 .row-reminder {
     background-color: #d4edda !important;
-    /* Hijau muda */
     color: #155724 !important;
     font-weight: bold;
 }
 
 .row-laporan-belum {
     background-color: #FCDE70 !important;
-    /* kuning */
     color: #856404;
     font-weight: bold;
 }
 
 .row-laporan-sudah {
     background-color: #C0EBA6 !important;
-    /* hijau */
     color: #065f46;
     font-weight: bold;
 }
@@ -32,7 +27,6 @@
     padding: 30px;
 }
 
-/* Style untuk MainCard */
 .card .MuiPaper-root,
 .card>div {
     background: rgba(255, 255, 255, 0.98) !important;
@@ -75,7 +69,6 @@
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-/* Body Table */
 .p-datatable .p-datatable-tbody>tr {
     transition: all 0.3s ease;
     border-left: 5px solid transparent;
@@ -298,18 +291,15 @@
     animation-duration: var(--kenburns-duration, 50s);
 }
 
-/* LANDSCAPE */
 .kenburns.landscape {
     object-fit: cover;
 }
 
-/* PORTRAIT */
 .kenburns.portrait {
     object-fit: contain;
     background-color: black;
 }
 
-/* Zoom IN */
 @keyframes kenburnsZoom {
     from {
         transform: scale(1) translate(0, 0);
@@ -320,7 +310,6 @@
     }
 }
 
-/* Zoom OUT  */
 .kenburns.reverse {
     animation-name: kenburnsZoomOut;
 }
@@ -344,23 +333,19 @@
     animation-duration: var(--pan-duration, 60s);
 }
 
-/* LANDSCAPE */
 .kenburns-pan.landscape {
     object-fit: cover;
 }
 
-/* PORTRAIT */
 .kenburns-pan.portrait {
     object-fit: contain;
     background: black;
 }
 
-/* Geser dari kiri ke kanan */
 .pan-right {
     animation-name: panRight;
 }
 
-/* Geser dar kanan ke kiri */
 .pan-left {
     animation-name: panLeft;
 }
@@ -425,12 +410,10 @@
   animation-fill-mode: forwards;
 }
 
-/* kanan + zoom-in */
 .pan-right-zoom-in {
   animation-name: panRightZoomIn;
 }
 
-/* kiri + zoom-out */
 .pan-left-zoom-out {
   animation-name: panLeftZoomOut;
 }
@@ -452,7 +435,6 @@
     transform: scale(1) translateX(0);
   }
 }
-/* font table terbaru*/
 .datatable-besar.p-datatable .p-datatable-thead > tr > th {
     font-size: 21px !important;
 }

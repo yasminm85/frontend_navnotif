@@ -16,7 +16,6 @@ import Grid from '@mui/material/Grid';
 import Swal from 'sweetalert2';
 import api from '../../api/axios';
 
-// primereact
 import 'primereact/resources/themes/lara-light-blue/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';

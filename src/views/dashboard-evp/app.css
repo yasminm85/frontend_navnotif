@@ -11,7 +11,6 @@
   padding: 20px;
 }
 
-/* Styles modul fullscreen */
 .full-screen-modal {
   position: fixed; 
   top: 0;
@@ -45,7 +44,6 @@
   font-size: 16px;
 }
 
-/* parsing karakter struktur laporan */
 .ql-editor {
   padding: 12px 15px;
   line-height: 1.6;

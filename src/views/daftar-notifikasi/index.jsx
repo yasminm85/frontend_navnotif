@@ -6,7 +6,6 @@ import { Dialog } from 'primereact/dialog';
 import { Button } from 'primereact/button';
 import { Editor } from 'primereact/editor';
 
-// prime react
 import 'primereact/resources/themes/lara-light-blue/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';

@@ -1,6 +1,3 @@
-/* =========================
-   ROOT & LAYOUT FIX
-========================= */
 html,
 body,
 #root {
@@ -15,9 +12,7 @@ body,
     flex-direction: column;
 }
 
-/* =========================
-   UTILITIES
-========================= */
+
 .max-w-25rem {
     max-width: 25rem;
 }
@@ -34,9 +29,7 @@ body,
     flex-direction: column;
 }
 
-/* =========================
-   DATATABLE
-========================= */
+
 .p-datatable {
     font-size: 0.95rem;
     flex: 1;
@@ -63,9 +56,7 @@ body,
 }
 
 
-/* =========================
-   ROW STATUS HIGHLIGHT
-========================= */
+
 .row-done {
     background-color: #f0fdf4 !important;
 }
@@ -82,9 +73,7 @@ body,
     background-color: #fee2e2 !important;
 }
 
-/* =========================
-   ROW HOVER ANIMATION
-========================= */
+
 .p-datatable .p-datatable-tbody > tr {
     transition:
         background-color 0.2s ease,
@@ -96,19 +85,13 @@ body,
     transform: translateY(-2px);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
 }
-/* 
 
-/* =========================
-   PAGINATOR
-========================= */
 .p-paginator {
     border-top: 1px solid #e5e7eb;
     margin-top: auto;
 }
 
-/* =========================
-   DIALOG BASE
-========================= */
+
 .p-dialog .p-dialog-header {
     font-weight: 600;
     border-bottom: 1px solid #e5e7eb;
@@ -122,9 +105,7 @@ body,
     margin: 0;
 }
 
-/* =========================
-   DETAIL DIALOG
-========================= */
+
 .detail-dialog {
     width: 42rem;
 }
@@ -135,14 +116,12 @@ body,
     gap: 1.25rem;
 }
 
-/* Section */
 .detail-section {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
 }
 
-/* Label */
 .detail-label {
     font-weight: 600;
     color: #374151;
@@ -151,12 +130,10 @@ body,
     gap: 0.5rem;
 }
 
-/* Value simple */
 .detail-value {
     color: #111827;
 }
 
-/* Box content */
 .detail-box {
     background-color: #f9fafb;
     border: 1px solid #e5e7eb;
@@ -166,20 +143,17 @@ body,
     color: #111827;
 }
 
-/* Judul tindak lanjut */
 .tindaklanjut-title {
     font-weight: 600;
     color: #2563eb;
     margin-bottom: 0.25rem;
 }
 
-/* Empty state */
 .detail-empty {
     font-style: italic;
     color: #6b7280;
 }
 
-/* Background utama popup */
 .detail-dialog .p-dialog-content {
     background: linear-gradient(
         180deg,
@@ -215,9 +189,7 @@ body,
     color: #ffffff;
 }
 
-/* =========================
-   FILE CARD
-========================= */
+
 .file-card {
     display: flex;
     align-items: center;
@@ -273,9 +245,7 @@ body,
     background-color: #ef4444;
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
+
 @media screen and (max-width: 768px) {
     .detail-dialog {
         width: 95vw;

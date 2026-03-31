@@ -1,21 +1,15 @@
 import PropTypes from 'prop-types';
 import React, {useState, useEffect} from 'react';
 
-// material-ui
 import { useTheme } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
 import Grid from '@mui/material/Grid2';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
-// third party
-import Chart from 'react-apexcharts';
-
-// project imports
 import MainCard from 'ui-component/cards/MainCard';
 import SkeletonTotalOrderCard from 'ui-component/cards/Skeleton/EarningCard';
 
-// assets
 import AssignmentIcon from '@mui/icons-material/Assignment';
 
 export default function TotalNotifikasi({count = 0}) {

@@ -25,7 +25,6 @@ export default function Login() {
     (state) => state.auth
   );
 
-  // Redirect after login
   useEffect(() => {
     if (user || isSuccess) {
       if (user.role === "admin") {
@@ -60,14 +59,9 @@ export default function Login() {
               <AuthCardWrapper>
                 <Grid container spacing={2} sx={{ alignItems: 'center', justifyContent: 'center' }}>
 
-                  {/* Logo + Title */}
+                  {/* Logo  */}
                   <Grid container alignItems="center" spacing={1}>
                     <Grid><Logo /></Grid>
-                    {/* <Grid>
-                      <Typography gutterBottom variant={downMD ? 'h3' : 'h2'}>
-                        NavNotif
-                      </Typography>
-                    </Grid> */}
                   </Grid>
 
                   {/* Title */}

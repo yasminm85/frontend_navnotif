@@ -1,5 +1,4 @@
 import { memo, useMemo } from 'react';
-import Typography from '@mui/material/Typography';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Drawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
@@ -89,7 +88,6 @@ function Sidebar() {
               <MenuList />
               {drawerOpen && drawerContent}
 
-              {/* === LOGOUT BUTTON DI PALING BAWAH === */}
               <Box sx={{ mt: 'auto', mb: 1 }}>
                 <ListItemButton onClick={handlelogout}>
                   <ListItemIcon>
