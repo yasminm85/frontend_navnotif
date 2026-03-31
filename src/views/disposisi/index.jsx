@@ -172,6 +172,8 @@ export default function Disposisi() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        setShowForm(false)
+
         const validation = validateForm();
         setErrors(validation);
         if (Object.keys(validation).length > 0) return;
