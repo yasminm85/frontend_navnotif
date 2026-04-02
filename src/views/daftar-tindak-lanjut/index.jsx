@@ -69,13 +69,14 @@ export default function DaftarTindakLanjut() {
                     t._id === currentTask._id
                         ? {
                             ...t,
-                            judul_tindak_lanjut: form.judulTindakLanjut,
-                            isi_tindak_lanjut: form.isiTindakLanjut,
+                            judul_tindaklanjut: form.judulTindakLanjut,
+                            isi_tindaklanjut: form.isiTindakLanjut,
                             isTindakLanjut: true
                         }
                         : t
                 )
             );
+            await fetchTindakLanjut();
 
             setShowDialog(false);
             setCurrentTask(null);
@@ -132,6 +133,20 @@ export default function DaftarTindakLanjut() {
             window.open(fileURL);
         } catch (err) {
             console.error("Gagal buka file laporan", err);
+        }
+    };
+
+    const handleOpenFileTindakLanjut = async (fileId) => {
+        if (!fileId) return;
+        try {
+            const res = await api.get(
+                `/api/tindaklanjut/file_tindak/${fileId}`, 
+                { responseType: "blob" }
+            );
+            const fileURL = URL.createObjectURL(res.data);
+            window.open(fileURL);
+        } catch (err) {
+            console.error("Gagal buka file tindak lanjut", err);
         }
     };
 
@@ -372,13 +387,34 @@ export default function DaftarTindakLanjut() {
                                     <i className="pi pi-paperclip" />
                                     File Pendukung
                                 </label>
-                                <input
-                                    type="file"
-                                    className="file-input"
-                                    onChange={(e) =>
-                                        setForm({ ...form, file: e.target.files[0] })
-                                    }
-                                />
+                                {currentTask.isTindakLanjut ? (
+                                    currentTask.file_tindaklanjut ? (
+                                        <div 
+                                            className="file-card" 
+                                            onClick={() => handleOpenFileTindakLanjut(currentTask.file_tindaklanjut)}
+                                            style={{ cursor: 'pointer' }}
+                                        >
+                                            <i className="pi pi-file file-icon text-green-500" />
+                                            <div className="file-info">
+                                                <span className="file-name text-blue-600 hover:underline">
+                                                    Lihat Dokumen Tindak Lanjut
+                                                </span>
+                                            </div>
+                                        </div>
+                                    ) : (
+                                        <small className="text-500 italic block mt-2">
+                                            Tidak ada file pendukung yang dilampirkan.
+                                        </small>
+                                    )
+                                ) : (
+                                    <input
+                                        type="file"
+                                        className="file-input mt-2"
+                                        onChange={(e) =>
+                                            setForm({ ...form, file: e.target.files[0] })
+                                        }
+                                    />
+                                )}
                             </div>
 
                             <div className="flex justify-end">

@@ -142,7 +142,7 @@ export default function TindakLanjut() {
 
             Swal.fire({
                             title: "Berhasil!",
-                            text: "Data disposisi berhasil diupdate.",
+                            text: "Data Tindak Lanjut berhasil disimpan.",
                             icon: "success"
                             });
 
