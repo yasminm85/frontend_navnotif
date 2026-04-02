@@ -70,7 +70,8 @@ export default function DaftarTindakLanjut() {
                         ? {
                             ...t,
                             judul_tindak_lanjut: form.judulTindakLanjut,
-                            isi_tindak_lanjut: form.isiTindakLanjut
+                            isi_tindak_lanjut: form.isiTindakLanjut,
+                            isTindakLanjut: true
                         }
                         : t
                 )

@@ -17,7 +17,7 @@ const other2 = {
   },
   {
       id: 'dashboard-tindak-lanjut',
-      title: 'Dashboard Tindak Lanjut',
+      title: 'Tindak Lanjut',
       type: 'item',
       url: '/dashboard-tindak-lanjut',
       icon: FeedbackIcon,
