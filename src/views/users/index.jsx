@@ -134,6 +134,16 @@ export default function Disposisi() {
                 });
 
             } else {
+
+                Swal.fire({
+                    title: 'Menyimpan data...',
+                    text: 'Mohon tunggu sebentar',
+                    allowOutsideClick: false,
+                    didOpen: () => {
+                    Swal.showLoading();
+                    }
+                });
+
                 res = await api.post('/api/auth/register', {
                     name: form.name,
                     email: form.email,
@@ -182,36 +192,45 @@ export default function Disposisi() {
 
 
     const handleDelete = async (id) => {
-
-        Swal.fire({
-            title: 'Apakah Yakin Dihapus?',
-            text: "Tidak bisa akses data lagi!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Ya, Hapus!'
-        }).then(async (result) => {
-            if (result.isConfirmed) {
-                try {
-                    await api.delete(`/api/auth/delete/user/${id}`);
-                    Swal.fire(
-                        'Deleted!',
-                        'User berhasil dihapus.',
-                        'success'
-                    );
-                    fetchPegawai();
-                } catch (error) {
-                    Swal.fire(
-                        'Error!',
-                        'Gagal Mengahapus User.',
-                        'error'
-                    );
+    Swal.fire({
+        title: 'Apakah Yakin Dihapus?',
+        text: "Tidak bisa akses data lagi!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ya, Hapus!'
+    }).then(async (result) => {
+        if (result.isConfirmed) {
+                Swal.fire({
+                title: 'Menghapus...',
+                text: 'Mohon tunggu sebentar.',
+                allowOutsideClick: false, 
+                showConfirmButton: false, 
+                didOpen: () => {
+                    Swal.showLoading();
                 }
-            }
-        });
+            });
 
-    };
+            try {
+                await api.delete(`/api/auth/delete/user/${id}`);
+                
+                Swal.fire(
+                    'Deleted!',
+                    'User berhasil dihapus.',
+                    'success'
+                );
+                fetchPegawai();
+            } catch (error) {
+                Swal.fire(
+                    'Error!',
+                    'Gagal Menghapus User.',
+                    'error'
+                );
+            }
+        }
+    });
+};
 
     const actionBodyTemplate = (rowData) => {
         return (
