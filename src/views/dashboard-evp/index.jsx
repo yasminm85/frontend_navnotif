@@ -61,7 +61,7 @@ export default function DashboardEVP() {
           onClick={() => {
             setCurrentTask(rowData);
             setSelectedLaporan(rowData.laporan);
-            setLaporanPath(rowData.laporan_file_path);
+            setLaporanPath(rowData.laporanFileId);
             setLaporanBy(rowData.laporan_by);
             setLaporanAt(rowData.laporan_at);
             setKomentar(rowData.komentar);
