@@ -291,7 +291,7 @@ export default function DashboardTindakLanjutEVP() {
                                     Dokumen Arahan
                                 </div>
 
-                                {selected.file_arahan ? (
+                                {selected.file_arahan && selected.file_arahan.length > 0 && selected.file_arahan !== 'null' && selected.file_arahan !== '[]' ? (
                                     <div
                                         className="file-card"
                                         onClick={handleOpenFileArahan}
@@ -351,7 +351,7 @@ export default function DashboardTindakLanjutEVP() {
                                         Dokumen Tindak Lanjut
                                     </div>
 
-                                    {selected.file_tindaklanjut ? (
+                                    {selected.file_tindaklanjut && selected.file_tindaklanjut.length > 0 && selected.file_tindaklanjut !== 'null' && selected.file_tindaklanjut !== '[]' ? (
                                         <div
                                             className="file-card"
                                             onClick={handleOpenFileTindakLanjut}
