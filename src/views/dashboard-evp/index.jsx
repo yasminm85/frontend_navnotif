@@ -80,7 +80,7 @@ export default function DashboardEVP() {
           className="p-button-rounded p-button-help p-button-sm"
           onClick={() => {
             setSelectedLaporanTambahan(rowData.laporan_tambahan);
-            setLaporanPathTambahan(rowData.laporan_tambahan_path);
+            setLaporanPathTambahan(rowData.laporanFileTambahanId);
             setLaporanByTambahan(rowData.laporan_tambahan_by);
             setLaporatAtTambahan(rowData.laporan_tambahan_at);
             setShowLaporanTambahan(true);
@@ -260,7 +260,7 @@ export default function DashboardEVP() {
               label="Lihat File Laporan"
               icon="pi pi-file"
               className="p-button p-button-sm"
-              onClick={() => window.open(`${api}/${laporanPath}`, '_blank')}
+              onClick={() => handleOpen(laporanPath)}
             />
           ) : (
             <Typography color="error">Belum ada file laporan.</Typography>
@@ -330,7 +330,7 @@ export default function DashboardEVP() {
               label="Lihat File Laporan"
               icon="pi pi-file"
               className="p-button p-button-sm"
-              onClick={() => handleOpen(laporanPath)}
+              onClick={() => handleOpen(laporanPathTambahan)}
             />
           ) : (
             <Typography color="error">Belum ada file laporan.</Typography>
