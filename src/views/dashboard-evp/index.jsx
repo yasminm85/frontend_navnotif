@@ -211,6 +211,19 @@ export default function DashboardEVP() {
     return text;
   };
 
+  const handleOpen = async (path) => {
+    try {
+      const res = await api.get(`/api/task/file/${path}`, {
+        responseType: 'blob'
+      });
+
+      const fileURL = URL.createObjectURL(res.data);
+      window.open(fileURL, '_blank');
+    } catch (err) {
+      console.error('Gagal buka file', err);
+    }
+  };
+
   return (
     <div className="card">
       <MainCard title="Dashboard">
@@ -317,7 +330,7 @@ export default function DashboardEVP() {
               label="Lihat File Laporan"
               icon="pi pi-file"
               className="p-button p-button-sm"
-              onClick={() => window.open(`${api}/${laporanPathTambahan}`, '_blank')}
+              onClick={() => handleOpen(laporanPath)}
             />
           ) : (
             <Typography color="error">Belum ada file laporan.</Typography>
