@@ -21,8 +21,9 @@ export default function KelolaDisplay() {
 
   const BACKEND_URL = import.meta.env.VITE_API_URL;
   const socket = io(BACKEND_URL, {
-    transports: ['websocket']
-  });
+  secure: true, 
+  withCredentials: true
+});
 
   const rows = 5;
   const scrollSpeed = 3000;
