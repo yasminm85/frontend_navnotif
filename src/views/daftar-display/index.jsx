@@ -12,16 +12,16 @@ import logo from '../../assets/images/image.png';
 import api from '../../api/axios';
 import { io } from 'socket.io-client';
 
+const socket = io(`${api}`, {
+    transports: ['websocket']
+  });
+  
 export default function KelolaDisplay() {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const playedRemindersRef = useRef([]);
   const [loading, setLoading] = useState(true);
   const [showDisposisi, setShowDisposisi] = useState([]);
   const [pageTitle, setPageTitle] = useState('AGENDA KEGIATAN');
-
-  const socket = io(`${api}`, {
-    transports: ['websocket']
-  });
 
   const rows = 5;
   const scrollSpeed = 3000;
