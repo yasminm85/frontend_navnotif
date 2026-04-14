@@ -15,6 +15,7 @@ import api from '../../api/axios';
 import Swal from 'sweetalert2';
 
 
+
 export default function DaftarNotifikasi() {
   const [loading, setLoading] = useState(true);
   const [showDetail, setShowDetail] = useState(false);
