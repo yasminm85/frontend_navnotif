@@ -12,10 +12,10 @@ import logo from '../../assets/images/image.png';
 import api from '../../api/axios';
 import { io } from 'socket.io-client';
 
-const socket = io(`${api}`, {
+const socket = io(api, {
     transports: ['websocket']
   });
-  
+
 export default function KelolaDisplay() {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const playedRemindersRef = useRef([]);
