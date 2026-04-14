@@ -219,7 +219,7 @@ export default function KelolaDisplay() {
 
   const getDataDisposisi = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/task/disposisi');
+      const response = await api.get('http://localhost:3000/api/task/disposisi');
       const items = filterValidItems(response.data);
       const reminders = checkReminderActive(items);
 
