@@ -12,16 +12,16 @@ import logo from '../../assets/images/image.png';
 import api from '../../api/axios';
 import Pusher from 'pusher-js';
 
+const pusher = new Pusher(import.meta.env.VITE_PUSHER_KEY, {
+  cluster: import.meta.env.VITE_PUSHER_CLUSTER,
+});
+
 export default function KelolaDisplay() {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const playedRemindersRef = useRef([]);
   const [loading, setLoading] = useState(true);
   const [showDisposisi, setShowDisposisi] = useState([]);
   const [pageTitle, setPageTitle] = useState('AGENDA KEGIATAN');
-
-  const pusher = new Pusher(import.meta.env.VITE_PUSHER_KEY, {
-  cluster: import.meta.env.VITE_PUSHER_CLUSTER,
-});
 
   const rows = 5;
   const scrollSpeed = 3000;
