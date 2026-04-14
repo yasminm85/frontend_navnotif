@@ -10,7 +10,7 @@ import './appDisplay.css';
 import alarmSound from './alarm-sound.mp3';
 import logo from '../../assets/images/image.png';
 import api from '../../api/axios';
-import { io } from 'socket.io-client';
+import Pusher from 'pusher-js';
 
 export default function KelolaDisplay() {
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -19,10 +19,8 @@ export default function KelolaDisplay() {
   const [showDisposisi, setShowDisposisi] = useState([]);
   const [pageTitle, setPageTitle] = useState('AGENDA KEGIATAN');
 
-  const BACKEND_URL = import.meta.env.VITE_API_URL;
-  const socket = io(BACKEND_URL, {
-  secure: true, 
-  withCredentials: true
+  const pusher = new Pusher(import.meta.env.VITE_PUSHER_KEY, {
+  cluster: import.meta.env.VITE_PUSHER_CLUSTER,
 });
 
   const rows = 5;
@@ -377,13 +375,16 @@ export default function KelolaDisplay() {
 
     getDataDisposisi();
 
-    socket.on('dis', () => {
-      console.log('Menerima data...');
-      getDataDisposisi();
+    const channel = pusher.subscribe('agenda-channel');
+
+    channel.bind('dis', () => {
+      console.log('Menerima data baru dari Pusher...');
+      getDataDisposisi(true); 
     });
 
     return () => {
-      socket.off('dis');
+      channel.unbind('dis'); 
+      pusher.unsubscribe('agenda-channel'); 
     };
   }, [agendaSelesaiFilter]);
 
