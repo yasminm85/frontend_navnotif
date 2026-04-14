@@ -12,16 +12,17 @@ import logo from '../../assets/images/image.png';
 import api from '../../api/axios';
 import { io } from 'socket.io-client';
 
-const socket = io(api, {
-    transports: ['websocket']
-  });
-
 export default function KelolaDisplay() {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const playedRemindersRef = useRef([]);
   const [loading, setLoading] = useState(true);
   const [showDisposisi, setShowDisposisi] = useState([]);
   const [pageTitle, setPageTitle] = useState('AGENDA KEGIATAN');
+
+  const BACKEND_URL = import.meta.env.VITE_API_URL;
+  const socket = io(BACKEND_URL, {
+    transports: ['websocket']
+  });
 
   const rows = 5;
   const scrollSpeed = 3000;
@@ -219,7 +220,7 @@ export default function KelolaDisplay() {
 
   const getDataDisposisi = async () => {
     try {
-      const response = await api.get('http://localhost:3000/api/task/disposisi');
+      const response = await api.get('/api/task/disposisi');
       const items = filterValidItems(response.data);
       const reminders = checkReminderActive(items);
 
