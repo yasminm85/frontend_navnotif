@@ -22,6 +22,7 @@ export default function KelolaDisplay() {
   const [loading, setLoading] = useState(true);
   const [showDisposisi, setShowDisposisi] = useState([]);
   const [pageTitle, setPageTitle] = useState('AGENDA KEGIATAN');
+  const [displayMedia, setDisplayMedia] = useState(null);
 
   const rows = 5;
   const scrollSpeed = 3000;
@@ -444,20 +445,30 @@ export default function KelolaDisplay() {
     const mediaType = getMediaType(currentMedia.mimetype);
 
     if (mediaType === 'image') {
+
+      const img = new Image();
+
+      img.onload = () => {
+        setDisplayMedia(currentMedia);
+
+      
       const durationInMs = currentMedia.duration * 1000;
 
       mediaTimerRef.current = setTimeout(() => {
         goToNextMedia();
       }, durationInMs);
+    };
+
+    img.src = currentMedia.url;
 
       return () => {
         if (mediaTimerRef.current) {
           clearTimeout(mediaTimerRef.current);
-          mediaTimerRef.current = null;
+          img.onload = null;
         }
       };
     }
-  }, [mode, currentMediaIndex, mediaList.length]);
+  }, [mode, currentMediaIndex, mediaList]);
 
   useEffect(() => {
     if (mode === MODE.TODAY) {
@@ -556,11 +567,11 @@ export default function KelolaDisplay() {
           justifyContent: 'center'
         }}
       >
-        {mediaType === 'image' && (
+        {displayMedia && getMediaType(displayMedia.mimetype) === 'image' && (
           <div className={`media-wrapper ${isTransitioning ? 'fade-out' : 'fade-in'}`}>
             <img
               key={currentMediaIndex}
-              src={mediaUrl}
+              src={displayMedia.url || mediaUrl}
               className={`kenburns ${panMode} ${orientation}`}
               style={{ '--pan-duration': `${currentMedia.duration * 60}s` }}
               onLoad={detectOrientation}
