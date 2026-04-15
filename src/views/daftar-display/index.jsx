@@ -438,7 +438,6 @@ export default function KelolaDisplay() {
     const currentMedia = mediaList[currentMediaIndex];
 
     if (!currentMedia) {
-      setCurrentMediaIndex(0);
       return;
     }
 
