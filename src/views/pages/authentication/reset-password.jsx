@@ -71,21 +71,51 @@ export function ResetPassword() {
     inputRefs.current[Math.min(pasted.length - 1, OTP_LENGTH - 1)].focus();
   };
 
-  const handleOtpSubmit = async (e) => {
-    e.preventDefault();
-    if (otp.join("").length !== OTP_LENGTH) return Swal.fire({ icon: "error", title: "Gagal", text: "Masukkan kode OTP 6 digit" });
-    setLoading(true);
-    try {
-      Swal.fire({ icon: "success", title: "Berhasil", text: "Kode OTP berhasil diverifikasi" });
-      setIsOtpSubmitted(true);
-    } catch (err) {
-      Swal.fire({ icon: "error", title: "Gagal", text: err.response?.data?.message || "Kode OTP tidak valid" });
-      setOtp(new Array(OTP_LENGTH).fill(""));
+
+const handleOtpSubmit = async (e) => {
+  e.preventDefault();
+  
+  const otpString = otp.join(""); 
+
+  if (otpString.length !== OTP_LENGTH) {
+    return Swal.fire({ 
+      icon: "error", 
+      title: "Gagal", 
+      text: "Masukkan kode OTP 6 digit" 
+    });
+  }
+
+  setLoading(true);
+
+  try {
+    const response = await api.post("/api/auth/check-otp", {
+      email: email,
+      otp: otpString
+    });
+
+    Swal.fire({ 
+      icon: "success", 
+      title: "Berhasil", 
+      text: "Kode OTP berhasil diverifikasi" 
+    });
+    
+    setIsOtpSubmitted(true); 
+
+  } catch (err) {
+    Swal.fire({ 
+      icon: "error", 
+      title: "Gagal", 
+      text: err.response?.data?.message || "Kode OTP tidak valid" 
+    });
+    
+    setOtp(new Array(OTP_LENGTH).fill(""));
+    if (inputRefs.current[0]) {
       inputRefs.current[0].focus();
-    } finally {
-      setLoading(false);
     }
-  };
+  } finally {
+    setLoading(false);
+  }
+};
 
   const handleResendOtp = async () => {
     setLoading(true);
@@ -107,18 +137,23 @@ export function ResetPassword() {
     e.preventDefault();
     if (!newPassword || !confirmPassword) return Swal.fire({ icon: "error", title: "Gagal", text: "Masukkan password baru" });
     if (newPassword !== confirmPassword) return Swal.fire({ icon: "error", title: "Gagal", text: "Password tidak sama" });
-    if (newPassword.length < 6) return Swal.fire({ icon: "error", title: "Gagal", text: "Password minimal 6 karakter" });
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    if (!passwordRegex.test(newPassword)) {
+      return Swal.fire({
+        icon: "error",
+        title: "Gagal",
+        text: "Password harus minimal 8 karakter, termasuk huruf besar, huruf kecil, angka, dan simbol"
+      });
+    }
+
     setLoading(true);
+
     try {
-      const { data } = await api.post("/api/auth/reset-password", {
+      const response  = await api.post("/api/auth/reset-password", {
         email, otp: otp.join(""), newPassword,
       });
-      if (data.success) {
         Swal.fire({ icon: "success", title: "Berhasil", text: "Password berhasil diubah!", timer: 2000, showConfirmButton: false });
-        setTimeout(() => navigate("/pages/login"), 2000);
-      } else {
-        Swal.fire({ icon: "error", title: "Gagal", text: data.message });
-      }
+        setTimeout(() => navigate("/pages/login"), 1000);
     } catch (err) {
       Swal.fire({ icon: "error", title: "Gagal", text: err.response?.data?.message || "Gagal mengubah password" });
     } finally {
