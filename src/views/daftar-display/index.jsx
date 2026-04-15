@@ -359,14 +359,32 @@ export default function KelolaDisplay() {
     getDisplayDuration();
     getMedia();
 
-    const intervalDuration = setInterval(getDisplayDuration, 10000);
-    const intervalMedia = setInterval(getMedia, 10000);
+    if (agendaSelesaiFilter.startDate && agendaSelesaiFilter.endDate) {
+      getDataDisposisi();
+    }
+
+    const channel = pusher.subscribe('agenda-channel');
+
+    channel.bind('dis', () => {
+      console.log('Menerima data baru dari Pusher...');
+      getDataDisposisi(true);
+      getDisplayDuration();
+      getMedia();
+    });
 
     return () => {
-      clearInterval(intervalDuration);
-      clearInterval(intervalMedia);
+      channel.unbind('dis');
+      pusher.unsubscribe('agenda-channel');
     };
-  }, []);
+
+    // const intervalDuration = setInterval(getDisplayDuration, 10000);
+    // const intervalMedia = setInterval(getMedia, 10000);
+
+    // return () => {
+    //   clearInterval(intervalDuration);
+    //   clearInterval(intervalMedia);
+    // };
+  }, [agendaSelesaiFilter]);
 
   useEffect(() => {
     if (!agendaSelesaiFilter.startDate || !agendaSelesaiFilter.endDate) {

@@ -12,7 +12,7 @@ const initialState = {
 export const endpoints = {
   key: 'api/menu',
   master: 'master',
-  dashboard: '/dashboard' // server URL
+  dashboard: '/dashboard' 
 };
 
 export function useGetMenuMaster() {
@@ -34,7 +34,6 @@ export function useGetMenuMaster() {
 }
 
 export function handlerDrawerOpen(isDashboardDrawerOpened) {
-  // to update local state based on key
 
   mutate(
     endpoints.key + endpoints.master,
@@ -46,7 +45,6 @@ export function handlerDrawerOpen(isDashboardDrawerOpened) {
 }
 
 export function handlerActiveItem(openedItem) {
-  // to update local state based on key
 
   mutate(
     endpoints.key + endpoints.master,

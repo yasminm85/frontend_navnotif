@@ -98,7 +98,6 @@ export const authSlice = createSlice({
     reset: () => initialState,
   },
   extraReducers: (builder) => {
-    // Login
     builder.addCase(LoginUser.pending, (state) => {
       state.isLoading = true;
     });
@@ -110,7 +109,6 @@ export const authSlice = createSlice({
       state.user = action.payload.user;
       state.token = action.payload.token;
 
-      // SIMPAN KE LOCAL STORAGE
       localStorage.setItem("user", JSON.stringify(action.payload.user));
       localStorage.setItem("token", action.payload.token);
     });
@@ -121,18 +119,15 @@ export const authSlice = createSlice({
       state.message = action.payload || "Login failed";
     });
 
-    // Register
     builder.addCase(RegisterUser.fulfilled, (state, action) => {
       state.isSuccess = true;
       state.message = action.payload.msg;
     });
 
-    // Get user detail
     builder.addCase(getUserDetail.fulfilled, (state, action) => {
       state.user = action.payload;
     });
 
-    // Logout
     builder.addCase(LogOut.fulfilled, (state) => {
       state.user = null;
       state.token = null;
@@ -141,7 +136,6 @@ export const authSlice = createSlice({
       state.message = "";
       state.isLoading = false;
 
-      // HAPUS LOCAL STORAGE
       localStorage.removeItem("user");
       localStorage.removeItem("token");
     });
