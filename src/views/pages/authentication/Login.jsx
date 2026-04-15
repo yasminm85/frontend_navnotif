@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { LoginUser } from '../../../features/authSlice';
+import { LoginUser, reset } from '../../../features/authSlice';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 // MUI Componen ts
@@ -26,7 +26,11 @@ export default function Login() {
   );
 
   useEffect(() => {
-    if (user || isSuccess) {
+    dispatch(reset());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (user && isSuccess) {
       if (user.role === "admin") {
         navigate("/dashboard/default");
       } else if (user.role === "pegawai") {

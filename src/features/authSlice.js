@@ -1,8 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
 import api from '../api/axios';
 
-// Ambil user & token dari localStorage saat refresh
 const savedUser = JSON.parse(localStorage.getItem("user"));
 const savedToken = localStorage.getItem("token");
 
@@ -59,22 +57,7 @@ export const RegisterUser = createAsyncThunk(
   }
 );
 
-// ===============================
-//  GET USER DETAIL
-// ===============================
-// export const getUserDetail = createAsyncThunk(
-//   "user/getUserDetail",
-//   async (_, thunkAPI) => {
-//     try {
-//       const response = await api.get("/api/auth/me");
-//       return response.data;
-//     } catch (error) {
-//       if (error.response) {
-//         return thunkAPI.rejectWithValue(error.response.data.msg);
-//       }
-//     }
-//   }
-// );
+
 export const getUserDetail = createAsyncThunk(
   "user/getUserDetail",
   async (_, thunkAPI) => {
@@ -135,7 +118,7 @@ export const authSlice = createSlice({
     builder.addCase(LoginUser.rejected, (state, action) => {
       state.isLoading = false;
       state.isError = true;
-      state.message = action.payload;
+      state.message = action.payload || "Login failed";
     });
 
     // Register
@@ -153,6 +136,10 @@ export const authSlice = createSlice({
     builder.addCase(LogOut.fulfilled, (state) => {
       state.user = null;
       state.token = null;
+      state.isSuccess = false;
+      state.isError = false;
+      state.message = "";
+      state.isLoading = false;
 
       // HAPUS LOCAL STORAGE
       localStorage.removeItem("user");

@@ -75,7 +75,6 @@ export default function AuthLogin({
             fullWidth
             size="large"
             variant="contained"
-            onClick={handleSubmit}
             type='submit'
           >
             {isLoading ? "Loading..." : "Login"}
