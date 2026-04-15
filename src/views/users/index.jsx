@@ -89,10 +89,20 @@ export default function Disposisi() {
 
         const validation = validateForm();
         setErrors(validation);
+        
 
         if (Object.keys(validation).length > 0) {
             return;
         }
+
+            const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/;
+            if (!passwordRegex.test(form.password)) {
+              return Swal.fire({
+                icon: 'error',
+                title: 'Gagal',
+                text: 'Password harus minimal 8 karakter, termasuk huruf besar, huruf kecil, angka, dan simbol'
+              });
+            }
 
         try {
             let res;
