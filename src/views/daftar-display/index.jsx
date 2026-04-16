@@ -445,26 +445,32 @@ export default function KelolaDisplay() {
     const mediaType = getMediaType(currentMedia.mimetype);
 
     if (mediaType === 'image') {
-
       const img = new Image();
+
+      const imageUrl = currentMedia.url || `${api.defaults.baseURL}/api/task/file/${currentMedia.displayFileId}`;
 
       img.onload = () => {
         setDisplayMedia(currentMedia);
+        
+        const durationInMs = currentMedia.duration * 1000;
 
-      
-      const durationInMs = currentMedia.duration * 1000;
+        mediaTimerRef.current = setTimeout(() => {
+          goToNextMedia();
+        }, durationInMs);
+      };
 
-      mediaTimerRef.current = setTimeout(() => {
-        goToNextMedia();
-      }, durationInMs);
-    };
+      img.onerror = () => {
+        console.error("Gagal memuat gambar:", imageUrl);
+        goToNextMedia(); 
+      };
 
-    img.src = currentMedia.url;
+      img.src = imageUrl; 
 
       return () => {
         if (mediaTimerRef.current) {
           clearTimeout(mediaTimerRef.current);
           img.onload = null;
+          img.onerror = null; 
         }
       };
     }
