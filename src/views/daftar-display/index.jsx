@@ -474,7 +474,7 @@ export default function KelolaDisplay() {
         }
       };
     }
-  }, [mode, currentMediaIndex, mediaList]);
+  }, [mode, currentMediaIndex, mediaList.length]);
 
   useEffect(() => {
     if (mode === MODE.TODAY) {
@@ -579,7 +579,7 @@ export default function KelolaDisplay() {
               key={currentMediaIndex}
               src={displayMedia.url || mediaUrl}
               className={`kenburns ${panMode} ${orientation}`}
-              style={{ '--pan-duration': `${currentMedia.duration * 60}s` }}
+              style={{ '--pan-duration': `${currentMedia.duration}s` }}
               onLoad={detectOrientation}
               onError={goToNextMedia}
             />
